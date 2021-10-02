@@ -10,13 +10,26 @@
 <body>
 
 <div>
-  <form>
-    <label for="fname">First name:</label><br>
-    <input type="text" id="fname" name="fname"><br>
-    <label for="lname">Last name:</label><br>
-    <input type="text" id="lname" name="lname">
+  <h2>Log-in</h2>
+  <form id="form">
+    <label >Username:</label><br>
+    <input type="text" id="username"><br>
+    <label>Password:</label><br>
+    <input type="text" id="password"><br><br>
+    <input type="button" onclick="validate()" value="Submit">
   </form>
 </div>
+
+<script>
+  function validate() {
+    if (document.getElementById("username").value==="user" && document.getElementById("password").value==="pass") {
+      alert("Valid credentials");
+    }
+    else {
+      alert("Incorrect username/password");
+    }
+  }
+  </script>
 
 </body>
 </html>
