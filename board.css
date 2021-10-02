@@ -2,7 +2,11 @@
     display: inline-block;
 }
 
-h5 {
+.card {
+    width: 14rem;
+}
+
+.board-box-title {
     text-align: center;
 }
 
@@ -11,10 +15,11 @@ h5 {
     display: inline-block;
     display: grid;
     grid-auto-flow: column;
-    grid-column-gap: 20px;
+    grid-column-gap: 90px;
+    height: 33px;
 }
 
-h6 {
+.story-title .time-estimate {
     display: inline-block;
     padding: 0.5em 0.5em
 }
