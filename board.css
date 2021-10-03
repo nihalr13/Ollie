@@ -1,5 +1,11 @@
+.header {
+    background-color: lightblue;
+    height: 30px
+}
+
 .container>* {
     display: inline-block;
+    margin: 20px;
 }
 
 .card {
