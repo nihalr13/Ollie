@@ -4,26 +4,6 @@ import React, { Component } from "react";
 import Button from "./Button.js";
 import {Link } from "react-router-dom";
 
-/*class App extends Component {
-  state = {
-    name: "king"
-  };
-  changeName = () => {
-    this.setState({
-      name: "queen"
-    });
-  };
-  render() {
-    return (
-      <div>
-        <h1>Ollie</h1>
-        <Button name="Create Story" click={this.changeName} />
-        <Button name="Delete Story" click={this.changeName} />
-      </div>
-    );
-  }
-}*/
-
 function App() {
   return (
     <div className="App">
