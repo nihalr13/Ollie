@@ -8,13 +8,12 @@
     <title>Ollie | Settings</title>
 </head>
 <body>
-    <div class="settings-header">
-    </div>
+    <div class="settings-header"></div>
 
     <div class="settings-container">
         <div class="settings-item">
             <label>default story category</label>
-            <select name="categories">
+            <select id="story_category">
                 <option value="backlog">backlog</option>
                 <option value="in progress">in progress</option>
                 <option value="blocked">blocked</option>
@@ -23,21 +22,22 @@
         </div>
         <div class="settings-item">
             <label>broswer notifications</label>
-            <select name="status">
+            <select id="browser_notifications">
                 <option value="enable">enable</option>
                 <option value="disable">disable</option>
             </select>
         </div>
         <div class="settings-item">
             <label>email notifications</label>
-            <select name="status">
+            <select id="email_notifications">
                 <option value="enable">enable</option>
                 <option value="disable">disable</option>
             </select>
         </div>
+        <button type="button" onclick="onSave()">Save</button>
 
         
     </div>
-    
 </body>
+<script src="settings.js"></script>
 </html>
