@@ -2,8 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 import React, { Component } from "react";
 import Button from "./Button.js";
+import {Link } from "react-router-dom";
 
-class App extends Component {
+/*class App extends Component {
   state = {
     name: "king"
   };
@@ -21,9 +22,9 @@ class App extends Component {
       </div>
     );
   }
-}
+}*/
 
-/*function App() {
+function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -31,6 +32,10 @@ class App extends Component {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        <Link to="/CreateStory"><button>
+          Create Story
+          </button> 
+          </Link>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -42,6 +47,6 @@ class App extends Component {
       </header>
     </div>
   );
-}*/
+}
 
 export default App;
