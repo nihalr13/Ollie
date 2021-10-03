@@ -1,4 +1,1 @@
 References:
-
-Link: https://reactgo.com/react-button/
-Notes: The template for adding buttons to the UI in app.js and button.js is based on this link with some modifications made to the code
