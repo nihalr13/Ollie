@@ -6,7 +6,23 @@
 <link rel="stylesheet" href="">
 <style>
 </style>
-<script src=""></script>
+<script src="">
+
+function signup(email, password) {
+  const auth = getAuth();
+  createUserWithEmailAndPassword(auth, document.getElementById('email').value, document.getElementById('password').value)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+    });
+}
+</script>
 <body>
 
 <div>
@@ -17,6 +33,7 @@
     <label>Password:</label><br>
     <input type="password" id="password"><br><br>
     <input type="button" onclick="validate()" value="Submit">
+    <!-- <input type="button" onclick="signup(document.getElementById('email').value, document.getElementById('password').value)" value="Submit"> -->
   </form>
 </div>
 
