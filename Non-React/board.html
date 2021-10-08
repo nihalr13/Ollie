@@ -30,18 +30,24 @@
                     <h5 class="board-box-title">Backlog</h6>
                 </a>
                 <div class="card-body">
-                    <div class="story-in-board">
-                        <h6 class="story-title">Story 1</h6>
-                        <h6 class="time-estimate">6 hrs</h6>
-                    </div>
-                    <div class="story-in-board">
-                        <h6 class="story-title">Story 2</h6>
-                        <h6 class="time-estimate">3 hrs</h6>
-                    </div>
-                    <div class="story-in-board">
-                        <h6 class="story-title">Story 3</h6>
-                        <h6 class="time-estimate">1 hrs</h6>
-                    </div>
+                    <a class="indiv-story-anchor">
+                        <div class="story-in-board">
+                            <h6 class="story-title">Story 1</h6>
+                            <h6 class="time-estimate">6 hrs</h6>
+                        </div>
+                    </a>
+                    <a class="indiv-story-anchor">
+                        <div class="story-in-board">
+                            <h6 class="story-title">Story 2</h6>
+                            <h6 class="time-estimate">3 hrs</h6>
+                        </div>
+                    </a>
+                    <a class="indiv-story-anchor">
+                        <div class="story-in-board">
+                            <h6 class="story-title">Story 3</h6>
+                            <h6 class="time-estimate">1 hrs</h6>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="card">
@@ -50,18 +56,24 @@
                 </a>
 
                 <div class="card-body">
-                    <div class="story-in-board">
-                        <h6 class="story-title">Story 4</h6>
-                        <h6 class="time-estimate">1 hrs</h6>
-                    </div>
-                    <div class="story-in-board">
-                        <h6 class="story-title">Story 5</h6>
-                        <h6 class="time-estimate">2 hrs</h6>
-                    </div>
-                    <div class="story-in-board">
-                        <h6 class="story-title">Story 6</h6>
-                        <h6 class="time-estimate">5 hrs</h6>
-                    </div>
+                    <a class="indiv-story-anchor">
+                        <div class="story-in-board">
+                            <h6 class="story-title">Story 4</h6>
+                            <h6 class="time-estimate">1 hrs</h6>
+                        </div>
+                    </a>
+                    <a class="indiv-story-anchor">
+                        <div class="story-in-board">
+                            <h6 class="story-title">Story 5</h6>
+                            <h6 class="time-estimate">2 hrs</h6>
+                        </div>
+                    </a>
+                    <a class="indiv-story-anchor">
+                        <div class="story-in-board">
+                            <h6 class="story-title">Story 6</h6>
+                            <h6 class="time-estimate">5 hrs</h6>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="card">
@@ -70,49 +82,63 @@
                 </a>
 
                 <div class="card-body">
-                    <div class="story-in-board">
-                        <h6 class="story-title">Story 7</h6>
-                        <h6 class="time-estimate">3 hrs</h6>
-                    </div>
-                    <div class="story-in-board">
-                        <h6 class="story-title">Story 8</h6>
-                        <h6 class="time-estimate">3 hrs</h6>
-                    </div>
-                    <div class="story-in-board">
-                        <h6 class="story-title">Story 9</h6>
-                        <h6 class="time-estimate">1 hrs</h6>
-                    </div>
+                    <a class="indiv-story-anchor">
+                        <div class="story-in-board">
+                            <h6 class="story-title">Story 7</h6>
+                            <h6 class="time-estimate">3 hrs</h6>
+                        </div>
+                    </a>
+                    <a class="indiv-story-anchor">
+                        <div class="story-in-board">
+                            <h6 class="story-title">Story 8</h6>
+                            <h6 class="time-estimate">3 hrs</h6>
+                        </div>
+                    </a>
+                    <a class="indiv-story-anchor">
+                        <div class="story-in-board">
+                            <h6 class="story-title">Story 9</h6>
+                            <h6 class="time-estimate">1 hrs</h6>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="card">
                 <a class="board-anchors" onclick="goToCategory('done')">
                     <h5 class="board-box-title">Done</h6>
                 </a>
-                
-                    <div class="card-body">
+
+                <div class="card-body">
+                    <a class="indiv-story-anchor">
                         <div class="story-in-board">
                             <h6 class="story-title">Story 10</h6>
                             <h6 class="time-estimate">2 hrs</h6>
                         </div>
+                    </a>
+                    <a class="indiv-story-anchor">
                         <div class="story-in-board">
                             <h6 class="story-title">Story 11</h6>
                             <h6 class="time-estimate">2 hrs</h6>
                         </div>
+                    </a>
+                    <a class="indiv-story-anchor">
                         <div class="story-in-board">
                             <h6 class="story-title">Story 12</h6>
                             <h6 class="time-estimate">2 hrs</h6>
                         </div>
-                    </div>
+                    </a>
+                </div>
             </div>
         </div>
     </center>
 
-</body>
 
-</html>
-
-<div class="board-story-popup">
-    <div class="story-details">
-
+    <!-- Inspired by https://www.w3schools.com/howto/howto_css_modals.asp -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modal-p-content">Some text in the Modal..</p>
+        </div>
     </div>
-</div>
+
+</body>
+</html>
