@@ -10,22 +10,65 @@ class Story {
     }
 }
 
-var stories = [];
-const categories = ["Backlog", "In Progress", "Blocked", "Done"];
-const title_ = "test ";
+function getRandomInt(max, inclZero) {
+    if (inclZero === false) {
+        var num = 0;
+        while (num == 0) {
+            num = Math.floor(Math.random() * max);
+        }
+        return num;
+    }
+    else {
+        return Math.floor(Math.random() * max);
+    }
+
+}
+
+function getParameters() {
+    var parameter = new URLSearchParams(window.location.search);
+    return parameter.get("category");
+}
+
+const categories = ["backlog", "inprogress", "blocked", "done"];
 const description_ = "description of story ";
 const assigner_ = "Qusai";
-const assignee_ = "Qusai";
+const assignee_ = "Bob";
 
-for (var i = 0; i < 4; i++) {
-    stories.push(new Story(title_ + (i+1).toString(), description_ + (i+1).toString(), i+1, assigner_, assignee_, i+1, categories[i]));
+var i = 1;
+var storiesAsDict = [
+    {title: "Story " + i.toString(), description: description_ + i.toString(), time: 6, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[0]},
+    {title: "Story " + i.toString(), description: description_ + i.toString(), time: 3, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[0]},
+    {title: "Story " + i.toString(), description: description_ + i.toString(), time: 1, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[0]},
+    {title: "Story " + i.toString(), description: description_ + i.toString(), time: 1, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[1]},
+    {title: "Story " + i.toString(), description: description_ + i.toString(), time: 2, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[1]},
+    {title: "Story " + i.toString(), description: description_ + i.toString(), time: 5, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[1]},
+    {title: "Story " + i.toString(), description: description_ + i.toString(), time: 3, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[2]},
+    {title: "Story " + i.toString(), description: description_ + i.toString(), time: 3, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[2]},
+    {title: "Story " + i.toString(), description: description_ + i.toString(), time: 1, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[2]},
+    {title: "Story " + i.toString(), description: description_ + i.toString(), time: 2, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[3]},
+    {title: "Story " + i.toString(), description: description_ + i.toString(), time: 2, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[3]},
+    {title: "Story " + i.toString(), description: description_ + i.toString(), time: 2, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[3]}
+];
+
+var storiesAsObj = [];
+
+
+for (i = 0; i < 10; i++) {
+    storiesAsObj.push(new Story(storiesAsDict[i]["title"], storiesAsDict[i]["description"], storiesAsDict[i]["time"], storiesAsDict[i]["assigner"], storiesAsDict[i]["assignee"], storiesAsDict[i]["priority"], storiesAsDict[i]["category"]));
 }
 
 
 const header = document.getElementsByClassName("header")[0];
 const container = document.getElementsByClassName("container")[0];
 
-for (let story of stories) {
+//TODO: select stories depending on which category selected.
+
+var selectedCategory = getParameters();
+
+for (let story of storiesAsObj) {
+    if (story.category != selectedCategory) {
+        continue;
+    }
     var story_item = document.createElement("div");
     story_item.classList.add("story-item");
 
