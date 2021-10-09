@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import './index.css';
 import App from './App';
 import CreateStory from './CreateStory';
+import Board from './Board';
 import reportWebVitals from './reportWebVitals';
 
 const rootElement = document.getElementById("root");
@@ -13,6 +14,7 @@ ReactDOM.render(
    <Switch>
      <Route exact path="/" component={App} />
      <Route path="/CreateStory" component={CreateStory} />
+     <Route path="/Board" component={Board} />
    </Switch>
   </BrowserRouter>,
   rootElement
