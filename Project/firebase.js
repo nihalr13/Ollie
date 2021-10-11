@@ -2,6 +2,8 @@
 import * as firebase from 'firebase';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getDatabase } from "firebase/database";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -26,5 +28,10 @@ class Firebase {
     firebase.initializeApp(firebaseConfig);
   }
 }
+
+const app = initializeApp(firebaseConfig);
+
+// Get a reference to the database service
+const database = getDatabase(app);
   
 export default Firebase;
