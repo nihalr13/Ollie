@@ -5,9 +5,17 @@ import Button from "./Button.js";
 import {Link } from "react-router-dom";
 import CreateStory from "./CreateStory";
 import Hello from "./CreateStory";
+import save from "./CreateStory";
+import val from "./CreateStory";
+import test from "./CreateStory";
 
 function Board() {
-    return <div>hello</div>;
+
+    const { test } = require('./CreateStory.js');
+   //console.log(val);
+    return <div>hello{ test }</div> 
+    //return <div>{ val }</div>;
+    //return <div>hello</div>;
     /*return (
         <div className="Board">
             <p>{ Hello }</p>

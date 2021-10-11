@@ -4,8 +4,11 @@ import './CreateStory.css';
 import {Link } from "react-router-dom";
 //export { CreateStory };
 export { val };
+export { test }
 
+var test = "Ice";
 var val;
+//module.exports = { test };
 export function Hello() {
     return (<div>hello</div>);
 }
