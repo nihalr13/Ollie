@@ -66,13 +66,16 @@ function CreateStory() {
                 </label>
                 <br></br>
                 <label>
-                    Priority:{" "} 
-                    <input 
-                    type="text" 
-                    name="priority"
-                    value={state.priority} 
-                    onChange={handleChange}
-                    />
+                    Priority:
+                    <select
+                        name="priority"
+                        value={state.priority} 
+                        onChange={handleChange}
+                    >
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                    </select>
                 </label>
                 <br></br>
                 <label>
