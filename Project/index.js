@@ -6,6 +6,7 @@ import App from './App';
 import CreateStory from './CreateStory';
 import Board from './Board';
 import reportWebVitals from './reportWebVitals';
+import login from './login';
 
 const rootElement = document.getElementById("root");
 
@@ -13,6 +14,7 @@ ReactDOM.render(
   <BrowserRouter>
    <Switch>
      <Route exact path="/" component={App} />
+     <Route exact path="/login" component={login} />
      <Route path="/CreateStory" component={CreateStory} />
      <Route path="/Board" component={Board} />
    </Switch>
