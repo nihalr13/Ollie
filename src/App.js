@@ -25,6 +25,10 @@ function App() {
           View Board
           </button> 
           </Link>
+          <Link to="/Settings"><button>
+          Settings
+          </button> 
+          </Link>
         <a
           className="App-link"
           href="https://reactjs.org"

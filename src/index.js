@@ -5,7 +5,9 @@ import './index.css';
 import App from './App';
 import CreateStory from './CreateStory';
 import Board from './Board';
+import Settings from './Settings'
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const rootElement = document.getElementById("root");
 
@@ -15,6 +17,7 @@ ReactDOM.render(
      <Route exact path="/" component={App} />
      <Route path="/CreateStory" component={CreateStory} />
      <Route path="/Board" component={Board} />
+     <Route path="/Settings" component={Settings} />
    </Switch>
   </BrowserRouter>,
   rootElement
