@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Ollie Log-In</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="">
+<style>
+</style>
+<script src="">
+
+function signup(email, password) {
+  const auth = getAuth();
+  createUserWithEmailAndPassword(auth, document.getElementById('email').value, document.getElementById('password').value)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+    });
+}
+</script>
+<body>
+
+<div>
+  <h2>Log-in</h2>
+  <form id="form">
+    <label >Username:</label><br>
+    <input type="text" id="username"><br>
+    <label>Password:</label><br>
+    <input type="password" id="password"><br><br>
+    <input type="button" onclick="validate()" value="Submit">
+    <!-- <input type="button" onclick="signup(document.getElementById('email').value, document.getElementById('password').value)" value="Submit"> -->
+  </form>
+</div>
+
+<script>
+  function validate() {
+    if (document.getElementById("username").value==="user" && document.getElementById("password").value==="pass") {
+      alert("Valid credentials");
+    }
+    else {
+      alert("Incorrect username/password");
+    }
+  }
+  </script>
+
+</body>
+</html>
