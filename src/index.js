@@ -4,8 +4,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import './index.css';
 import App from './App';
 import CreateStory from './CreateStory';
-import Board from './Board';
-import Settings from './Settings'
+import Board from './Components/Board/Board';
+import Settings from './Components/Settings/Settings'
+import StoryDetails from './Components/StoryDetails/StoryDetails';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -18,6 +19,7 @@ ReactDOM.render(
      <Route path="/CreateStory" component={CreateStory} />
      <Route path="/Board" component={Board} />
      <Route path="/Settings" component={Settings} />
+     <Route path="/StoryDetails" component={StoryDetails} />
    </Switch>
   </BrowserRouter>,
   rootElement
