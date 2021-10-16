@@ -1,13 +1,5 @@
-import logo from './logo.svg';
-import './App.css';
 import React, { Component } from "react";
-import Button from "./Button.js";
 import {Link } from "react-router-dom";
-import CreateStory from "./CreateStory";
-import Hello from "./CreateStory";
-import save from "./CreateStory";
-import val from "./CreateStory";
-import test from "./CreateStory";
 import './settings.css'
 
 
