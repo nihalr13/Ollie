@@ -11,6 +11,14 @@ function App() {
         <p>
           <h1> Ollie </h1>
         </p>
+        <Link to="/login"><button>
+          Login
+          </button>
+          </Link>
+          <Link to="/signup"><button>
+          Sign-up
+          </button>
+          </Link>
         <Link to="/CreateStory"><button>
           Create Story
           </button>

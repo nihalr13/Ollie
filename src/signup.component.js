@@ -14,7 +14,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-export default class Login extends Component {
+export default class Signup extends Component {
 
   constructor(props) {
     super(props);

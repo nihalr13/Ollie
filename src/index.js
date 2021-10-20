@@ -9,6 +9,9 @@ import Settings from './Components/Settings/Settings'
 import StoryDetails from './Components/StoryDetails/StoryDetails';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from './login.component';
+import Signup from './signup.component';
+
 
 const rootElement = document.getElementById("root");
 
@@ -20,6 +23,8 @@ ReactDOM.render(
      <Route path="/Board" component={Board} />
      <Route path="/Settings" component={Settings} />
      <Route path="/StoryDetails" component={StoryDetails} />
+     <Route path="/login" component={Login} />
+     <Route path="/signup" component={Signup} />
    </Switch>
   </BrowserRouter>,
   rootElement
