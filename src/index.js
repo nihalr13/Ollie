@@ -12,7 +12,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './login.component';
 import Signup from './signup.component';
 
-
 const rootElement = document.getElementById("root");
 
 ReactDOM.render(

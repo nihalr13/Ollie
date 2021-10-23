@@ -37,45 +37,6 @@ for (i = 0; i < 10; i++) {
     storiesAsObj.push(new Story(storiesAsDict[i]["title"], storiesAsDict[i]["description"], storiesAsDict[i]["time"], storiesAsDict[i]["assigner"], storiesAsDict[i]["assignee"], storiesAsDict[i]["priority"], storiesAsDict[i]["category"]));
 }
 
-
-// Inspired by https://www.w3schools.com/howto/howto_css_modals.asp
-
-// var modal = document.getElementById("myModal");
-// var triggers = document.getElementsByClassName("indiv-story-anchor");
-// triggers = Array.from(triggers);
-// var span = document.getElementsByClassName("close")[0];
-
-// triggers.forEach( (trigger) => {
-//     trigger.onClick = () => {
-//         var p = document.getElementById("modal-p-content");
-//         var storyName = trigger.getElementsByClassName("story-title")[0].innerHTML;
-//         var storyObj = storiesAsObj.find((story) => story.title == storyName);
-//         p.innerHTML = "title: " + storyObj.title + "; " +
-//          "description: " + storyObj.description + "; " +
-//          "time: " + storyObj.time + "; " +
-//          "assigner: " + storyObj.assigner + "; " +
-//          "assignee: " + storyObj.assignee + "; " +
-//          "priority: " + storyObj.priority + "; " +
-//          "category: " + storyObj.category + "; ";
-//         modal.style.display = "block";
-//     }
-
-// });
-
-// span.onClick = function() {
-//   modal.style.display = "none";
-// }
-
-// window.onClick = function(event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// }
-
-
-//card and card-body classNamees taken from bootstrap
-//modal text inspired by https://www.w3schools.com/howto/howto_css_modals.asp
-
 function Board() {
     const categories = ["backlog", "inprogress", "blocked", "done"];
     const description_ = "description of story ";
@@ -104,8 +65,6 @@ function Board() {
     for (i = 0; i < 10; i++) {
         storiesAsObj.push(new Story(storiesAsDict[i]["title"], storiesAsDict[i]["description"], storiesAsDict[i]["time"], storiesAsDict[i]["assigner"], storiesAsDict[i]["assignee"], storiesAsDict[i]["priority"], storiesAsDict[i]["category"]));
     }
-
-
 
     return <div>
 

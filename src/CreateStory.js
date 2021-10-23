@@ -1,40 +1,19 @@
 import React, { useState } from "react";
-import logo from './logo.svg';
 import './CreateStory.css';
-import {Link } from "react-router-dom";
-//export { CreateStory };
-export { val };
-export { test }
+import { getDatabase, ref, update } from "firebase/database";
+import app from "./initialize";
+import { useHistory } from "react-router-dom";
 
-var test = "Ice";
-var val;
-//module.exports = { test };
-export function Hello() {
-    return (<div>hello</div>);
-}
-
-export function save() {
-    val = document.getElementById("storydsc").value;
-    //document.write(val);
-}
-
-//var dsc = document.getElementById('storydsc').value;
-var dsc;
-
+const db = getDatabase(app);
 
 function CreateStory() {
     const [state, setState] = useState({
         storyName: "",
         storyDesc: "",
-        priority: "",
-        timeEstimate: ""
+        category: "backlog",
+        priority: "low",
+        timeEstimate: 0
     })
-
-
-    //localStorage.story_description = {state.storyDesc};
-    //localStorage.story_name = setState(storyName);
-    //const [storyName, setStoryName] = useState("")
-    //const [storyDesc, setStoryDesc] = useState("")
 
     const handleChange = e => {
         setState({
@@ -42,7 +21,7 @@ function CreateStory() {
             [e.target.name]: e.target.value,
         })
     }
-
+    const history = useHistory()
 
     return (
         <div className="CreateStory">
@@ -69,6 +48,20 @@ function CreateStory() {
                 </label>
                 <br></br>
                 <label>
+                    Category:
+                    <select
+                        name="category"
+                        value={state.category} 
+                        onChange={handleChange}
+                    >
+                    <option value="backlog">Backlog</option>
+                    <option value="in_progess">In Progress</option>
+                    <option value="blocked">Blocked</option>
+                    <option value="done">Done</option>
+                    </select>
+                </label>
+                <br></br>
+                <label>
                     Priority:
                     <select
                         name="priority"
@@ -84,17 +77,29 @@ function CreateStory() {
                 <label>
                     Time Estimate:{" "} 
                     <input 
-                        type="text" 
+                        type="number" 
                         name="timeEstimate"
                         value={state.timeEstimate} 
                         onChange={handleChange}
                     />
                 </label>
             </form>
-            <Link to="/Board"><button>
+           <button onClick={()=>{
+                console.log(state.priority)
+                const story = {
+                    name:state.storyName,
+                    description:state.storyDesc,
+                    estimated_time:state.timeEstimate,
+                    category:state.category,
+                    priority:state.priority
+                }
+                const updates = {};
+                updates['/stories/' + state.storyName] = story;
+                update(ref(db), updates);
+                history.push("/Board")
+           }}>
             Next
           </button> 
-          </Link>
         </div>
     );
 }
