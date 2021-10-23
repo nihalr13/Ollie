@@ -1,11 +1,10 @@
-.header {
-    background-color: lightblue;
-    height: 30px
+.container {
+    display: flex;
+    margin: 0 auto;
 }
 
 .container>* {
-    display: inline-block;
-    margin: 20px;
+    margin: 0 auto;
 }
 
 .card {
@@ -18,7 +17,6 @@
 
 .story-in-board {
     outline: 1px solid;
-    display: inline-block;
     display: grid;
     grid-auto-flow: column;
     grid-column-gap: 90px;
@@ -26,13 +24,14 @@
 }
 
 .story-title .time-estimate {
-    display: inline-block;
+    display: flex;
     padding: 0.5em 0.5em
 }
 
-.indiv-story-anchor, .board-anchors {
-        color: inherit;
-        cursor: pointer;
+.indiv-story-anchor,
+.board-anchors {
+    color: inherit;
+    cursor: pointer;
 }
 
 
