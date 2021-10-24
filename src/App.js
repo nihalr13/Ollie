@@ -32,10 +32,20 @@ function App() {
           <Link to="/Board"><button>
           View Board
           </button> 
+          <br></br>
+          <br></br>
           </Link>
           <Link to="/Settings"><button>
           Settings
+          </button>
+          <br></br>
+          <br></br> 
+          </Link>
+          <Link to="/Profile"><button>
+          Profile
           </button> 
+          <br></br>
+          <br></br>
           </Link>
         <a
           className="App-link"

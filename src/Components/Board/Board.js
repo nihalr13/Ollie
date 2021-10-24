@@ -62,10 +62,7 @@ function Board() {
 
     return (
         <div>
-
             <Header />
-
-
             <center>
                 <div className="container">
                     <div className="card">
@@ -117,7 +114,7 @@ function Board() {
 
             <MyVerticallyCenteredModal
             show={modalState.show}
-            onHide={() => setModalState({show: false, story: null})}
+            onHide={() => setModalState({show: false, story: modalState.story})}
             story={modalState.story}
             />
 
