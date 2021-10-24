@@ -13,6 +13,7 @@ function deleteAcc() {
   if (window.confirm("Are you sure you want to delete this account?")) {
     deleteUser(user).then(() => {
       // User deleted, so sign them out and navigate to main page.
+      this.context.router.push("/login");
     }).catch((error) => {
       // An error ocurred
       // ...
