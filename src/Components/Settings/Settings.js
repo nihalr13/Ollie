@@ -1,10 +1,26 @@
 import React, { Component } from "react";
-import {Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './settings.css'
+import { getAuth, deleteUser } from "firebase/auth";
 
 
 //card and card-body classNamees taken from bootstrap
 //modal text inspired by https://www.w3schools.com/howto/howto_css_modals.asp
+
+function deleteAcc() {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  if (window.confirm("Are you sure you want to delete this account?")) {
+    deleteUser(user).then(() => {
+      // User deleted, so sign them out and navigate to main page.
+    }).catch((error) => {
+      // An error ocurred
+      // ...
+    });
+  } else {
+    // remove popup and do nothing
+  }
+}
 
 function Settings() {
 
@@ -36,6 +52,7 @@ function Settings() {
                 <option value="disable">disable</option>
             </select>
         </div>
+        <button type="button" onclick="deleteAcc()">Delete Account</button>
         <button type="button" onclick="onSave()">Save</button>
 
         
