@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getDatabase, ref, onValue } from "firebase/database";
 import updates from '../../CreateStory';
 import state from '../../CreateStory';
+import story from '../../CreateStory';
 
 // Custom Components and CSS
 import Story from "../../Classes/Story";
@@ -69,7 +70,14 @@ function Board() {
         story: null
     });
 
-    //const db = getDatabase();
+    const db = getDatabase();
+    const retrievedName = ref(db, '/stories/Create Like Button/category');
+    onValue(retrievedName, (snapshot) => {
+        const data = snapshot.val();
+        alert(data);
+    });
+    //const retrievedName = ref(db, '/stories/' + story.name);
+    //alert(retrievedName);
     //const retrievedName = ref(db, '/stories/' + state.storyName);
 
 
