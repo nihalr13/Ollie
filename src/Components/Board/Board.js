@@ -76,6 +76,37 @@ function Board() {
 
     return (
         <div>
+        <Link to="/login"><button>
+          Login
+          </button>
+          </Link>
+        <Link to="/signup"><button>
+          Sign-up
+          </button>
+          </Link>
+        <Link to="/CreateStory"><button>
+          Create Story
+          </button>
+          <br></br>
+          <br></br>
+          </Link>
+          <button>
+            Delete Story
+          </button>
+          <br></br>
+          <br></br>
+        <Link to="/Settings"><button>
+          Settings
+          </button>
+          <br></br>
+          <br></br> 
+          </Link>
+        <Link to="/Profile"><button>
+          Profile
+          </button> 
+          <br></br>
+          <br></br>
+          </Link>
             <Header />
             <center>
                 <div className="container">
