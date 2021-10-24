@@ -73,6 +73,7 @@ function Board() {
     //const retrievedName = ref(db, '/stories/' + state.storyName);
 
 
+
     return (
         <div>
             <Header />
@@ -121,9 +122,6 @@ function Board() {
 
                         <BoardBox categStories={storiesAsObj.filter(story => story.category === "done")} modalFunc={setModalState}/>
                     </div>
-                </div>
-                <div>
-                    {displayData}
                 </div>
             </center>
 
