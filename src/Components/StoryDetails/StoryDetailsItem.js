@@ -2,7 +2,6 @@ import React from "react";
 
 function StoryDetailsItem(props) {
 
-
     return <div>
 
         <div className="story-item">
@@ -17,8 +16,5 @@ function StoryDetailsItem(props) {
 
     </div>;
 }
-
-
-
 
 export default StoryDetailsItem;

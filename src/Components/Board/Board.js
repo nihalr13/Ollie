@@ -1,9 +1,6 @@
 import React, { Component, useState } from "react";
 import { Link } from "react-router-dom";
 import { getDatabase, ref, onValue } from "firebase/database";
-import updates from '../../CreateStory';
-import state from '../../CreateStory';
-import story from '../../CreateStory';
 
 // Custom Components and CSS
 import Story from "../../Classes/Story";
@@ -16,19 +13,8 @@ import './Header/Header.css';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-function displayData() {
-    var list = "";
-    var i = 0;
-    for (i = 0; i < updates.length; i++) {
-        list += updates[i].story;
-    }
-    return <div>list</div>;
-}
-
-
 // DONE: Add the modal show function to anchors 
 // DONE: Figure out how to pass the story details to modal function
-
 
 
 function Board() {
@@ -70,16 +56,19 @@ function Board() {
         story: null
     });
 
-    const db = getDatabase();
-    const retrievedName = ref(db, '/stories/Create Like Button/category');
-    onValue(retrievedName, (snapshot) => {
-        const data = snapshot.val();
-        alert(data);
-    });
-    //const retrievedName = ref(db, '/stories/' + story.name);
-    //alert(retrievedName);
-    //const retrievedName = ref(db, '/stories/' + state.storyName);
 
+    // Iterate through all of the stories in the database
+    const db = getDatabase();
+    const dbRef = ref(db, 'stories');
+
+    onValue(dbRef, (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+        const childCategory = childSnapshot.val().category;
+        const childData = childSnapshot.val();
+        console.log(childCategory);
+        console.log(childData);
+      });
+    });
 
 
     return (
@@ -164,7 +153,6 @@ function Board() {
                 </div>
             </center>
 
-
             <MyVerticallyCenteredModal
             show={modalState.show}
             onHide={() => setModalState({show: false, story: modalState.story})}
@@ -175,7 +163,6 @@ function Board() {
     );
     
 }
-
 
 
 function MyVerticallyCenteredModal(props) {
