@@ -1,5 +1,8 @@
 import React, { Component, useState } from "react";
 import { Link } from "react-router-dom";
+import { getDatabase, ref, onValue } from "firebase/database";
+import updates from '../../CreateStory';
+import state from '../../CreateStory';
 
 // Custom Components and CSS
 import Story from "../../Classes/Story";
@@ -11,6 +14,15 @@ import './Header/Header.css';
 // Bootstrap Components
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+
+function displayData() {
+    var list = "";
+    var i = 0;
+    for (i = 0; i < updates.length; i++) {
+        list += updates[i].story;
+    }
+    return <div>list</div>;
+}
 
 
 // DONE: Add the modal show function to anchors 
@@ -57,7 +69,8 @@ function Board() {
         story: null
     });
 
-
+    //const db = getDatabase();
+    //const retrievedName = ref(db, '/stories/' + state.storyName);
 
 
     return (
@@ -111,6 +124,9 @@ function Board() {
 
                         <BoardBox categStories={storiesAsObj.filter(story => story.category === "done")} modalFunc={setModalState}/>
                     </div>
+                </div>
+                <div>
+                    {displayData}
                 </div>
             </center>
 
