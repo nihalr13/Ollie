@@ -11,6 +11,7 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './login.component';
 import Signup from './signup.component';
+import Profile from "./Components/Profile/Profile"
 
 const rootElement = document.getElementById("root");
 
@@ -24,6 +25,7 @@ ReactDOM.render(
      <Route path="/StoryDetails" component={StoryDetails} />
      <Route path="/login" component={Login} />
      <Route path="/signup" component={Signup} />
+     <Route path="/Profile" component={Profile} />
    </Switch>
   </BrowserRouter>,
   rootElement
