@@ -40,12 +40,6 @@ function Board() {
         childTimes.push(childTime);
         childCategories.push(childCategory);
         childPriorities.push(childPriority);
-        storyDisplayLabel += "Story " + count + "\n";
-        storyDisplayName += "Name: " + childName + "\n";
-        storyDisplayDesc += "Desc: " + childDesc + "\n";
-        storyDisplayTime += "Time: " + childTime + "\n";
-        storyDisplayCategory += "Category: " + childCategory + "\n";
-        storyDisplayPriority += "Priority: " + childPriority + "\n";
         count++;
       });
     });
