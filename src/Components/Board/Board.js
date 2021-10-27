@@ -16,18 +16,11 @@ import Button from 'react-bootstrap/Button';
 // DONE: Add the modal show function to anchors 
 // DONE: Figure out how to pass the story details to modal function
 
-
 function Board() {
     // Iterate through all of the stories in the database
     const db = getDatabase();
     const dbRef = ref(db, 'stories');
 
-    var storyDisplayLabel = "";
-    var storyDisplayName = "";
-    var storyDisplayDesc = "";
-    var storyDisplayTime = "";
-    var storyDisplayCategory = "";
-    var storyDisplayPriority = "";
     var childNames = [];
     var childDescriptions = [];
     var childTimes = [];
@@ -57,38 +50,20 @@ function Board() {
       });
     });
 
-
-    //#region "Create dummy stories"
-    const categories = ["backlog", "inprogress", "blocked", "done"];
-    const description_ = "description of story ";
     const assigner_ = "Qusai";
     const assignee_ = "Bob";
-
-    var i = 1;
-
-    //Working on storing stories from database
-    var storiesAsDict = [
-        {title: childNames[0], description: childDescriptions[0], time: childTimes[0], assigner: assigner_, assignee: assignee_, priority: childPriorities[0], category: childCategories[0]},
-        {title: childNames[1], description: childDescriptions[1], time: childTimes[1], assigner: assigner_, assignee: assignee_, priority: childPriorities[1], category: childCategories[1]}
-    ];
     var storiesAsObj = [];
 
-
-    for (i = 0; i < 2; i++) {
-        storiesAsObj.push(new Story(storiesAsDict[i]["title"], storiesAsDict[i]["description"], storiesAsDict[i]["time"], storiesAsDict[i]["assigner"], storiesAsDict[i]["assignee"], storiesAsDict[i]["priority"], storiesAsDict[i]["category"]));
+    //Store stories as objects based on 
+    for (var i = 0; i < childNames.length; i++) {
+        storiesAsObj.push(new Story(childNames[i], childDescriptions[i], childTimes[i], assigner_, assignee_, childPriorities[i], childCategories[i]));
     }
-
-    //#endregion
 
     //DONE: Continue working on Modal
     const [modalState, setModalState] = useState({
         show: false,
         story: null
     });
-
-
-    
-
 
     return (
         <div>
@@ -170,20 +145,6 @@ function Board() {
                         <BoardBox categStories={storiesAsObj.filter(story => story.category === "done")} modalFunc={setModalState}/>
                     </div>
                 </div>
-                <div>
-                    {storyDisplayLabel}
-                    <br></br>
-                    {storyDisplayName}
-                    <br></br>
-                    {storyDisplayDesc}
-                    <br></br>
-                    {storyDisplayTime}
-                    <br></br>
-                    {storyDisplayCategory}
-                    <br></br>
-                    {storyDisplayPriority}
-                    <br></br>
-                </div>
             </center>
 
             <MyVerticallyCenteredModal
@@ -191,12 +152,9 @@ function Board() {
             onHide={() => setModalState({show: false, story: modalState.story})}
             story={modalState.story}
             />
-
         </div>
-    );
-    
+    );  
 }
-
 
 function MyVerticallyCenteredModal(props) {
     var title;
@@ -205,7 +163,6 @@ function MyVerticallyCenteredModal(props) {
         title = props.story.title
         description = props.story.description;
     }
-
   return (
     <Modal
       {...props}
