@@ -18,6 +18,46 @@ import Button from 'react-bootstrap/Button';
 
 
 function Board() {
+    // Iterate through all of the stories in the database
+    const db = getDatabase();
+    const dbRef = ref(db, 'stories');
+
+    var storyDisplayLabel = "";
+    var storyDisplayName = "";
+    var storyDisplayDesc = "";
+    var storyDisplayTime = "";
+    var storyDisplayCategory = "";
+    var storyDisplayPriority = "";
+    var childNames = [];
+    var childDescriptions = [];
+    var childTimes = [];
+    var childCategories = [];
+    var childPriorities = [];
+    onValue(dbRef, (snapshot) => {
+      var count = 1;
+      snapshot.forEach((childSnapshot) => {
+        const childName = childSnapshot.val().name;
+        const childDesc = childSnapshot.val().description;
+        const childTime = childSnapshot.val().time;
+        const childCategory = childSnapshot.val().category;
+        const childPriority = childSnapshot.val().priority;
+        const childData = childSnapshot.val();
+        childNames.push(childName);
+        childDescriptions.push(childDesc);
+        childTimes.push(childTime);
+        childCategories.push(childCategory);
+        childPriorities.push(childPriority);
+        storyDisplayLabel += "Story " + count + "\n";
+        storyDisplayName += "Name: " + childName + "\n";
+        storyDisplayDesc += "Desc: " + childDesc + "\n";
+        storyDisplayTime += "Time: " + childTime + "\n";
+        storyDisplayCategory += "Category: " + childCategory + "\n";
+        storyDisplayPriority += "Priority: " + childPriority + "\n";
+        count++;
+      });
+    });
+
+
     //#region "Create dummy stories"
     const categories = ["backlog", "inprogress", "blocked", "done"];
     const description_ = "description of story ";
@@ -25,6 +65,13 @@ function Board() {
     const assignee_ = "Bob";
 
     var i = 1;
+
+    //Working on storing stories from database
+    /*var storiesAsDict = [
+        {title: "Story 1", description: childDescriptions[0], time: childTimes[0], assigner: assigner_, assignee: assignee_, priority: childPriorities[0], category: childCategories[0]},
+        {title: "Story 2", description: childDescriptions[1], time: childTimes[1], assigner: assigner_, assignee: assignee_, priority: childPriorities[1], category: childCategories[1]}
+    ];*/
+
     var storiesAsDict = [
         {title: "Story " + i.toString(), description: description_ + i.toString(), time: 6, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[0]},
         {title: "Story " + i.toString(), description: description_ + i.toString(), time: 3, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[0]},
@@ -57,18 +104,7 @@ function Board() {
     });
 
 
-    // Iterate through all of the stories in the database
-    const db = getDatabase();
-    const dbRef = ref(db, 'stories');
-
-    onValue(dbRef, (snapshot) => {
-      snapshot.forEach((childSnapshot) => {
-        const childCategory = childSnapshot.val().category;
-        const childData = childSnapshot.val();
-        console.log(childCategory);
-        console.log(childData);
-      });
-    });
+    
 
 
     return (
@@ -150,6 +186,20 @@ function Board() {
 
                         <BoardBox categStories={storiesAsObj.filter(story => story.category === "done")} modalFunc={setModalState}/>
                     </div>
+                </div>
+                <div>
+                    {storyDisplayLabel}
+                    <br></br>
+                    {storyDisplayName}
+                    <br></br>
+                    {storyDisplayDesc}
+                    <br></br>
+                    {storyDisplayTime}
+                    <br></br>
+                    {storyDisplayCategory}
+                    <br></br>
+                    {storyDisplayPriority}
+                    <br></br>
                 </div>
             </center>
 
