@@ -67,12 +67,12 @@ function Board() {
     var i = 1;
 
     //Working on storing stories from database
-    /*var storiesAsDict = [
+    var storiesAsDict = [
         {title: "Story 1", description: childDescriptions[0], time: childTimes[0], assigner: assigner_, assignee: assignee_, priority: childPriorities[0], category: childCategories[0]},
         {title: "Story 2", description: childDescriptions[1], time: childTimes[1], assigner: assigner_, assignee: assignee_, priority: childPriorities[1], category: childCategories[1]}
-    ];*/
+    ];
 
-    var storiesAsDict = [
+    /*var storiesAsDict = [
         {title: "Story " + i.toString(), description: description_ + i.toString(), time: 6, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[0]},
         {title: "Story " + i.toString(), description: description_ + i.toString(), time: 3, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[0]},
         {title: "Story " + i.toString(), description: description_ + i.toString(), time: 1, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[0]},
@@ -86,12 +86,11 @@ function Board() {
         {title: "Story " + i.toString(), description: description_ + i.toString(), time: 2, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[3]},
         {title: "Story " + i.toString(), description: description_ + i.toString(), time: 2, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[3] },
         {title: "Story " + i.toString(), description: description_ + i.toString(), time: 6, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[0]}
-    ];
-
+    ];*/
     var storiesAsObj = [];
 
 
-    for (i = 0; i < 13; i++) {
+    for (i = 0; i < 2; i++) {
         storiesAsObj.push(new Story(storiesAsDict[i]["title"], storiesAsDict[i]["description"], storiesAsDict[i]["time"], storiesAsDict[i]["assigner"], storiesAsDict[i]["assignee"], storiesAsDict[i]["priority"], storiesAsDict[i]["category"]));
     }
 
