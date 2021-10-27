@@ -38,7 +38,7 @@ function Board() {
       snapshot.forEach((childSnapshot) => {
         const childName = childSnapshot.val().name;
         const childDesc = childSnapshot.val().description;
-        const childTime = childSnapshot.val().time;
+        const childTime = childSnapshot.val().estimated_time;
         const childCategory = childSnapshot.val().category;
         const childPriority = childSnapshot.val().priority;
         const childData = childSnapshot.val();
@@ -68,25 +68,9 @@ function Board() {
 
     //Working on storing stories from database
     var storiesAsDict = [
-        {title: "Story 1", description: childDescriptions[0], time: childTimes[0], assigner: assigner_, assignee: assignee_, priority: childPriorities[0], category: childCategories[0]},
-        {title: "Story 2", description: childDescriptions[1], time: childTimes[1], assigner: assigner_, assignee: assignee_, priority: childPriorities[1], category: childCategories[1]}
+        {title: childNames[0], description: childDescriptions[0], time: childTimes[0], assigner: assigner_, assignee: assignee_, priority: childPriorities[0], category: childCategories[0]},
+        {title: childNames[1], description: childDescriptions[1], time: childTimes[1], assigner: assigner_, assignee: assignee_, priority: childPriorities[1], category: childCategories[1]}
     ];
-
-    /*var storiesAsDict = [
-        {title: "Story " + i.toString(), description: description_ + i.toString(), time: 6, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[0]},
-        {title: "Story " + i.toString(), description: description_ + i.toString(), time: 3, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[0]},
-        {title: "Story " + i.toString(), description: description_ + i.toString(), time: 1, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[0]},
-        {title: "Story " + i.toString(), description: description_ + i.toString(), time: 1, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[1]},
-        {title: "Story " + i.toString(), description: description_ + i.toString(), time: 2, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[1]},
-        {title: "Story " + i.toString(), description: description_ + i.toString(), time: 5, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[1]},
-        {title: "Story " + i.toString(), description: description_ + i.toString(), time: 3, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[2]},
-        {title: "Story " + i.toString(), description: description_ + i.toString(), time: 3, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[2]},
-        {title: "Story " + i.toString(), description: description_ + i.toString(), time: 1, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[2]},
-        {title: "Story " + i.toString(), description: description_ + i.toString(), time: 2, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[3]},
-        {title: "Story " + i.toString(), description: description_ + i.toString(), time: 2, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[3]},
-        {title: "Story " + i.toString(), description: description_ + i.toString(), time: 2, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[3] },
-        {title: "Story " + i.toString(), description: description_ + i.toString(), time: 6, assigner: assigner_, assignee: assignee_, priority: i++, category: categories[0]}
-    ];*/
     var storiesAsObj = [];
 
 
