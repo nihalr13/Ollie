@@ -12,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './login.component';
 import Signup from './signup.component';
 import Profile from "./Components/Profile/Profile"
+import BoardByDate from "./Components/Board/BoardByDate";
 
 const rootElement = document.getElementById("root");
 
@@ -26,6 +27,7 @@ ReactDOM.render(
      <Route path="/login" component={Login} />
      <Route path="/signup" component={Signup} />
      <Route path="/Profile" component={Profile} />
+     <Route path="/BoardByDate" component={BoardByDate} />
    </Switch>
   </BrowserRouter>,
   rootElement

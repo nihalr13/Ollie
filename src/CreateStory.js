@@ -3,6 +3,7 @@ import './CreateStory.css';
 import { getDatabase, ref, update } from "firebase/database";
 import app from "./initialize";
 import { useHistory } from "react-router-dom";
+import { dateVal } from "./Components/Board/Board.js";
 
 const db = getDatabase(app);
 

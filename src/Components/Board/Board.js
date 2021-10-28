@@ -13,6 +13,11 @@ import './Header/Header.css';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
+//Code to find date and time is from freeCodeCamp tutorial
+const timeElapsed = Date.now();
+const today = new Date(timeElapsed);
+var dateVal = today.toUTCString();
+
 // DONE: Add the modal show function to anchors 
 // DONE: Figure out how to pass the story details to modal function
 
@@ -88,6 +93,12 @@ function Board() {
           </Link>
         <Link to="/Profile"><button>
           Profile
+          </button> 
+          <br></br>
+          <br></br>
+          </Link>
+          <Link to="/BoardByDate"><button>
+          BoardByDate
           </button> 
           <br></br>
           <br></br>
@@ -182,4 +193,5 @@ function MyVerticallyCenteredModal(props) {
   );
 }
 
+export { dateVal };
 export default Board;
