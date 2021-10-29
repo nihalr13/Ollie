@@ -15,8 +15,8 @@ import Button from 'react-bootstrap/Button';
 
 //Code to find date and time is from freeCodeCamp tutorial
 const timeElapsed = Date.now();
-const today = new Date(timeElapsed);
-var dateVal = today.toUTCString();
+const created = new Date(timeElapsed);
+var dateVal = created.toUTCString();
 
 // DONE: Add the modal show function to anchors 
 // DONE: Figure out how to pass the story details to modal function
@@ -193,5 +193,6 @@ function MyVerticallyCenteredModal(props) {
   );
 }
 
+export { created };
 export { dateVal };
 export default Board;

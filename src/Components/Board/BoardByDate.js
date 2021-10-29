@@ -1,10 +1,14 @@
 import React, { Component, useState } from "react";
 import { Link } from "react-router-dom";
-import { dateVal } from "./Board";
+import { dateVal } from "../../CreateStory";
+import { created } from "../../CreateStory";
 
 function BoardByDate() {
     alert("Hello");
-    return ( <div className="BoardByDate"> {dateVal} </div> );
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed);
+    const diff = today.getDate() - created.getDate();
+    return ( <div className="BoardByDate"> { diff }<br></br> {dateVal} </div> );
 
 }
 

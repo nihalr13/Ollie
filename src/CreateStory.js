@@ -3,9 +3,14 @@ import './CreateStory.css';
 import { getDatabase, ref, update } from "firebase/database";
 import app from "./initialize";
 import { useHistory } from "react-router-dom";
-import { dateVal } from "./Components/Board/Board.js";
+//import { dateVal } from "./Components/Board/Board.js";
 
 const db = getDatabase(app);
+
+//Code to find date and time is from freeCodeCamp tutorial
+const timeElapsed = Date.now();
+const created = new Date(timeElapsed);
+var dateVal = created.toUTCString();
 
 function CreateStory() {
     const [state, setState] = useState({
@@ -105,4 +110,6 @@ function CreateStory() {
     );
 }
 
+export { created };
+export { dateVal };
 export default CreateStory;
