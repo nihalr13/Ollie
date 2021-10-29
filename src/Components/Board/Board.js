@@ -164,9 +164,25 @@ function Board() {
 function MyVerticallyCenteredModal(props) {
     var title;
     var description;
+    var time;
+    var priority;
+    var category;
     if (props.story != null) {
         title = props.story.title
         description = props.story.description;
+        time = props.story.time;
+        priority = props.story.priority;
+        category = props.story.category;
+    }
+    var priorityColor = "";
+    if (priority == "high") {
+        priorityColor = "red";
+    }
+    if (priority == "medium") {
+        priorityColor = "orange";
+    }
+    if (priority == "low") {
+        priorityColor = "green";
     }
   return (
     <Modal
@@ -184,6 +200,17 @@ function MyVerticallyCenteredModal(props) {
         <h4>{title}</h4>
         <p>
           {description}
+        </p>
+        <p>
+            {time}
+        </p>
+        <p>
+            <font color = {priorityColor}>
+            {priority}
+            </font>
+        </p>
+        <p>
+            {category}
         </p>
       </Modal.Body>
       <Modal.Footer>

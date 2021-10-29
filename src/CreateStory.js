@@ -97,7 +97,8 @@ function CreateStory() {
                     description:state.storyDesc,
                     estimated_time:state.timeEstimate,
                     category:state.category,
-                    priority:state.priority
+                    priority:state.priority,
+                    //dateCreated:created
                 }
                 const updates = {};
                 updates['/stories/' + state.storyName] = story;
