@@ -4,11 +4,11 @@ import './settings.css'
 import { getAuth, deleteUser } from "firebase/auth";
 import app from "../../initialize";
 import { getDatabase, ref, update } from "firebase/database";
+import Sidebar from "../Sidebar/Sidebar";
 
 const db = getDatabase(app);
 
 //card and card-body classNamees taken from bootstrap
-//modal text inspired by https://www.w3schools.com/howto/howto_css_modals.asp
 
 class Settings extends Component {
 
@@ -29,41 +29,46 @@ class Settings extends Component {
     }
   }
 
-    render() { return <div>
-      <body>
-      <div class="settings-header"></div>
+  render() {
+    return (
+      <div id="Settings">
 
-      <div class="settings-container">
-          <div class="settings-item">
-              <label>default story category</label>
-              <select id="story_category">
-                  <option value="backlog">backlog</option>
-                  <option value="in progress">in progress</option>
-                  <option value="blocked">blocked</option>
-                  <option value="done">done</option>
-              </select>
+        <div id="sidebar">
+          <Sidebar />
+        </div>
+
+        <div id="settings-content">
+          <div className="settings-item">
+            <label>default story category</label>
+            <select id="story_category">
+              <option value="backlog">backlog</option>
+              <option value="in progress">in progress</option>
+              <option value="blocked">blocked</option>
+              <option value="done">done</option>
+            </select>
           </div>
-          <div class="settings-item">
-              <label>broswer notifications</label>
-              <select id="browser_notifications">
-                  <option value="enable">enable</option>
-                  <option value="disable">disable</option>
-              </select>
+          <div className="settings-item">
+            <label>broswer notifications</label>
+            <select id="browser_notifications">
+              <option value="enable">enable</option>
+              <option value="disable">disable</option>
+            </select>
           </div>
-          <div class="settings-item">
-              <label>email notifications</label>
-              <select id="email_notifications">
-                  <option value="enable">enable</option>
-                  <option value="disable">disable</option>
-              </select>
+          <div className="settings-item">
+            <label>email notifications</label>
+            <select id="email_notifications">
+              <option value="enable">enable</option>
+              <option value="disable">disable</option>
+            </select>
           </div>
-          <button type="button" onClick={ this.DeleteAcc } >Delete Account</button>
+          <button type="button" onClick={this.DeleteAcc} >Delete Account</button>
           <button type="button" onclick="onSave()">Save</button>
 
           
+        </div>
+      
       </div>
-      </body>
-      </div>
+    );
     }
 }
 

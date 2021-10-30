@@ -1,8 +1,26 @@
-html,
-body {
-    margin: 0px;
-    padding: 0px;
+#Settings {
+    display: -webkit-flex;
+    display: flex;
 }
+
+#sidebar {
+    height: 100vh !important;
+}
+
+#settings-content {
+    -webkit-flex: 1;
+    flex: 1;
+    margin-top: 220px;
+}
+
+.settings-item {
+    display: block;
+}
+
+label {
+    margin-left: 40%;
+}
+
 
 .settings-header {
     background-color: lightblue;
