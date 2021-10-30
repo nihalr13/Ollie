@@ -3,14 +3,8 @@ import './CreateStory.css';
 import { getDatabase, ref, update } from "firebase/database";
 import app from "./initialize";
 import { useHistory } from "react-router-dom";
-//import { dateVal } from "./Components/Board/Board.js";
 
 const db = getDatabase(app);
-
-//Code to find date and time is from freeCodeCamp tutorial
-const timeElapsed = Date.now();
-const created = new Date(timeElapsed);
-var dateVal = created.toUTCString();
 
 function CreateStory() {
     const [state, setState] = useState({
@@ -18,7 +12,8 @@ function CreateStory() {
         storyDesc: "",
         category: "backlog",
         priority: "low",
-        timeEstimate: 0
+        timeEstimate: 0,
+        date_created: ""
     })
 
     const handleChange = e => {
@@ -61,7 +56,7 @@ function CreateStory() {
                         onChange={handleChange}
                     >
                     <option value="backlog">Backlog</option>
-                    <option value="in_progess">In Progress</option>
+                    <option value="in_progress">In Progress</option>
                     <option value="blocked">Blocked</option>
                     <option value="done">Done</option>
                     </select>
@@ -91,14 +86,18 @@ function CreateStory() {
                 </label>
             </form>
            <button onClick={()=>{
-                console.log(state.priority)
+                
+                const timeElapsed = Date.now();
+                const created = new Date(timeElapsed);
+                var dateVal = created.toUTCString();
+
                 const story = {
                     name:state.storyName,
                     description:state.storyDesc,
                     estimated_time:state.timeEstimate,
                     category:state.category,
                     priority:state.priority,
-                    //dateCreated:created
+                    date_created:dateVal
                 }
                 const updates = {};
                 updates['/stories/' + state.storyName] = story;
@@ -111,6 +110,4 @@ function CreateStory() {
     );
 }
 
-export { created };
-export { dateVal };
 export default CreateStory;

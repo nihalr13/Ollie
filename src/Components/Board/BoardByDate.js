@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import { Link } from "react-router-dom";
-import { dateVal } from "../../CreateStory";
-import { created } from "../../CreateStory";
+import { dateVal } from "./Board";
+import { created } from "./Board";
 
 function BoardByDate() {
     alert("Hello");

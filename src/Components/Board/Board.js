@@ -32,20 +32,17 @@ function Board() {
     var childCategories = [];
     var childPriorities = [];
     onValue(dbRef, (snapshot) => {
-      var count = 1;
       snapshot.forEach((childSnapshot) => {
         const childName = childSnapshot.val().name;
         const childDesc = childSnapshot.val().description;
         const childTime = childSnapshot.val().estimated_time;
         const childCategory = childSnapshot.val().category;
         const childPriority = childSnapshot.val().priority;
-        const childData = childSnapshot.val();
         childNames.push(childName);
         childDescriptions.push(childDesc);
         childTimes.push(childTime);
         childCategories.push(childCategory);
         childPriorities.push(childPriority);
-        count++;
       });
     });
 
@@ -124,7 +121,7 @@ function Board() {
                             <h5 className="board-box-title">In Progress</h5>
                         </Link>
 
-                        <BoardBox categStories={storiesAsObj.filter(story => story.category === "inprogress")} modalFunc={setModalState}/>
+                        <BoardBox categStories={storiesAsObj.filter(story => story.category === "in_progress")} modalFunc={setModalState}/>
                     </div>
                     <div className="card">
 
@@ -202,15 +199,13 @@ function MyVerticallyCenteredModal(props) {
           {description}
         </p>
         <p>
-            {time}
+            Time Estimate: {time}
         </p>
         <p>
+            Priority of this story: 
             <font color = {priorityColor}>
             {priority}
             </font>
-        </p>
-        <p>
-            {category}
         </p>
       </Modal.Body>
       <Modal.Footer>
