@@ -1,3 +1,17 @@
+.Profile {
+    display: -webkit-flex;
+    display: flex;
+}
+
+.sidebar {
+    height: 100vh !important;
+}
+
+.page-content {
+    -webkit-flex: 1;
+    flex: 1;
+}
+
 #profile-img {
     display: block;
     border-radius: 100px;
@@ -11,10 +25,15 @@
     object-position: 0% 0%;
 }
 
-.Profile {
-    display: flex;
+.profile-info {
+    display: block;
 }
 
-.sidebar {
-    height: 100vh !important;
+.row {
+    margin: auto auto;
+}
+
+button {
+    display: block;
+    margin: auto auto;
 }

@@ -105,39 +105,42 @@ const Profile = () => {
                 {/* TODO: Implement changing image */}
                 <img id="profile-img" src={currUser.profileImg} />
                 </div>
-                <div>
-                    <Container>  
-                        <Row className="center">
-                            <Col>Full Name: </Col>
-                            {fullNameComp}
-                        </Row>
-                    </Container>
+                <div id="profile-info">
+                    <div>
+                        <Container>  
+                            <Row className="center">
+                                <Col>Full Name: </Col>
+                                {fullNameComp}
+                            </Row>
+                        </Container>
+                    </div>
+                    <div>
+                        <Container>  
+                            <Row className="center">
+                                <Col>Email: </Col>
+                                {EmailComp}
+                            </Row>
+                        </Container>
+                    </div>
+                    <div>
+                        <Container>  
+                            <Row className="center">
+                                <Col>GitHub: </Col>
+                                {GitComp}
+                            </Row>
+                        </Container>
+                    </div>
+                    <div>
+                        <Container>  
+                            <Row className="center">
+                                <Col>Projects: </Col>
+                                {ProjectsComp}
+                            </Row>
+                        </Container>
+                    </div>
+                    {button}
                 </div>
-                <div>
-                    <Container>  
-                        <Row className="center">
-                            <Col>Email: </Col>
-                            {EmailComp}
-                        </Row>
-                    </Container>
-                </div>
-                <div>
-                    <Container>  
-                        <Row className="center">
-                            <Col>GitHub: </Col>
-                            {GitComp}
-                        </Row>
-                    </Container>
-                </div>
-                <div>
-                    <Container>  
-                        <Row className="center">
-                            <Col>Projects: </Col>
-                            {ProjectsComp}
-                        </Row>
-                    </Container>
-                </div>
-                {button}
+                
             </div>
         </div>
             
