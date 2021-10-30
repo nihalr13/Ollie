@@ -5,6 +5,9 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { useState } from 'react';
 
+//sidebar component from https://reactjsexample.com/minimal-side-navigation-component-for-react/
+import Sidebar from '../Sidebar/Sidebar'
+
 const currUser = {
     name: "Qusai",
     email: "Qusai@gmail.com",
@@ -91,44 +94,54 @@ const Profile = () => {
 
     return (
         <div className="Profile">
-            <div>
+            <div className="sidebar">
+                <Sidebar />
+            </div>
+
+            
+
+            <div className="page-content">
+                <div>
                 {/* TODO: Implement changing image */}
                 <img id="profile-img" src={currUser.profileImg} />
+                </div>
+                <div>
+                    <Container>  
+                        <Row className="center">
+                            <Col>Full Name: </Col>
+                            {fullNameComp}
+                        </Row>
+                    </Container>
+                </div>
+                <div>
+                    <Container>  
+                        <Row className="center">
+                            <Col>Email: </Col>
+                            {EmailComp}
+                        </Row>
+                    </Container>
+                </div>
+                <div>
+                    <Container>  
+                        <Row className="center">
+                            <Col>GitHub: </Col>
+                            {GitComp}
+                        </Row>
+                    </Container>
+                </div>
+                <div>
+                    <Container>  
+                        <Row className="center">
+                            <Col>Projects: </Col>
+                            {ProjectsComp}
+                        </Row>
+                    </Container>
+                </div>
+                {button}
             </div>
-            <div>
-                <Container>  
-                    <Row className="center">
-                        <Col>Full Name: </Col>
-                        {fullNameComp}
-                    </Row>
-                </Container>
-            </div>
-            <div>
-                <Container>  
-                    <Row className="center">
-                        <Col>Email: </Col>
-                        {EmailComp}
-                    </Row>
-                </Container>
-            </div>
-            <div>
-                <Container>  
-                    <Row className="center">
-                        <Col>GitHub: </Col>
-                        {GitComp}
-                    </Row>
-                </Container>
-            </div>
-            <div>
-                <Container>  
-                    <Row className="center">
-                        <Col>Projects: </Col>
-                        {ProjectsComp}
-                    </Row>
-                </Container>
-            </div>
-            {button}
         </div>
+            
+            
 
 
 

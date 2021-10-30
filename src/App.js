@@ -47,6 +47,12 @@ function App() {
           <br></br>
           <br></br>
           </Link>
+          <Link to="/Sidebar"><button>
+          Sidebar
+          </button> 
+          <br></br>
+          <br></br>
+          </Link>
         <a
           className="App-link"
           href="https://reactjs.org"
