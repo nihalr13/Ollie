@@ -1,3 +1,20 @@
+#Board {
+    display: -webkit-flex;
+    display: flex;
+}
+
+#sidebar {
+    height: 100vh !important;
+}
+
+#board-content {
+    -webkit-flex: 1;
+    flex: 1;
+    margin-top: 220px;
+}
+
+
+
 .container {
     display: flex;
     margin: 0 auto;

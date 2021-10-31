@@ -1,6 +1,7 @@
 import React, { Component, useState } from "react";
 import { Link } from "react-router-dom";
 import { getDatabase, ref, onValue } from "firebase/database";
+import Sidebar from '../Sidebar/Sidebar'
 
 // Custom Components and CSS
 import Story from "../../Classes/Story";
@@ -18,11 +19,9 @@ const timeElapsed = Date.now();
 const created = new Date(timeElapsed);
 var dateVal = created.toUTCString();
 
-// DONE: Add the modal show function to anchors 
-// DONE: Figure out how to pass the story details to modal function
 
 function Board() {
-    // Iterate through all of the stories in the database
+    //#region Iterate through all of the stories in the database
     const db = getDatabase();
     const dbRef = ref(db, 'stories');
 
@@ -53,108 +52,76 @@ function Board() {
     //Store stories as objects based on 
     for (var i = 0; i < childNames.length; i++) {
         storiesAsObj.push(new Story(childNames[i], childDescriptions[i], childTimes[i], assigner_, assignee_, childPriorities[i], childCategories[i]));
-    }
+  }
+  
+  //#endregion
 
-    //DONE: Continue working on Modal
     const [modalState, setModalState] = useState({
         show: false,
         story: null
     });
 
     return (
-        <div>
-        <Link to="/login"><button>
-          Login
-          </button>
-          </Link>
-        <Link to="/signup"><button>
-          Sign-up
-          </button>
-          </Link>
-        <Link to="/CreateStory"><button>
-          Create Story
-          </button>
-          <br></br>
-          <br></br>
-          </Link>
-          <button>
-            Delete Story
-          </button>
-          <br></br>
-          <br></br>
-        <Link to="/Settings"><button>
-          Settings
-          </button>
-          <br></br>
-          <br></br> 
-          </Link>
-        <Link to="/Profile"><button>
-          Profile
-          </button> 
-          <br></br>
-          <br></br>
-          </Link>
-          <Link to="/BoardByDate"><button>
-          BoardByDate
-          </button> 
-          <br></br>
-          <br></br>
-          </Link>
-            <Header />
-            <center>
-                <div className="container">
-                    <div className="card">
-                        <Link className="board-anchors" to={{
-                            pathname: "/StoryDetails",
-                            state: { category: "backlog", stories: storiesAsObj }
-                        }}>
-                            <h5 className="board-box-title">Backlog</h5>
-                        </Link>
-                        <BoardBox categStories={storiesAsObj.filter(story => story.category === "backlog")} modalFunc={setModalState}/>
-                    </div>
-                    <div className="card">
-
-                        <Link className="board-anchors" to={{
-                            pathname: "/StoryDetails",
-                            state: { category: "inprogress", stories: storiesAsObj }
-                        }}>
-                            <h5 className="board-box-title">In Progress</h5>
-                        </Link>
-
-                        <BoardBox categStories={storiesAsObj.filter(story => story.category === "in_progress")} modalFunc={setModalState}/>
-                    </div>
-                    <div className="card">
-
-                        <Link className="board-anchors" to={{
-                            pathname: "/StoryDetails",
-                            state: { category: "blocked", stories: storiesAsObj }
-                        }}>
-                            <h5 className="board-box-title">Blocked</h5>
-                        </Link>
-                        
-                        <BoardBox categStories={storiesAsObj.filter(story => story.category === "blocked")} modalFunc={setModalState}/>
-
-                    </div>
-                    <div className="card">
-
-                        <Link className="board-anchors" to={{
-                            pathname: "/StoryDetails",
-                            state: { category: "done", stories: storiesAsObj }
-                        }}>
-                            <h5 className="board-box-title">Done</h5>
-                        </Link> 
-
-                        <BoardBox categStories={storiesAsObj.filter(story => story.category === "done")} modalFunc={setModalState}/>
-                    </div>
-                </div>
-            </center>
-
-            <MyVerticallyCenteredModal
-            show={modalState.show}
-            onHide={() => setModalState({show: false, story: modalState.story})}
-            story={modalState.story}
-            />
+      <div id="Board">
+        <div id="sidebar">
+          <Sidebar />
         </div>
+        <div id="board-content">
+          <div className="container">
+              <div className="card">
+                  <Link className="board-anchors" to={{
+                      pathname: "/StoryDetails",
+                      state: { category: "backlog", stories: storiesAsObj }
+                  }}>
+                      <h5 className="board-box-title">Backlog</h5>
+                  </Link>
+                  <BoardBox categStories={storiesAsObj.filter(story => story.category === "backlog")} modalFunc={setModalState}/>
+              </div>
+              <div className="card">
+
+                  <Link className="board-anchors" to={{
+                      pathname: "/StoryDetails",
+                      state: { category: "inprogress", stories: storiesAsObj }
+                  }}>
+                      <h5 className="board-box-title">In Progress</h5>
+                  </Link>
+
+                  <BoardBox categStories={storiesAsObj.filter(story => story.category === "in_progress")} modalFunc={setModalState}/>
+              </div>
+              <div className="card">
+
+                  <Link className="board-anchors" to={{
+                      pathname: "/StoryDetails",
+                      state: { category: "blocked", stories: storiesAsObj }
+                  }}>
+                      <h5 className="board-box-title">Blocked</h5>
+                  </Link>
+                  
+                  <BoardBox categStories={storiesAsObj.filter(story => story.category === "blocked")} modalFunc={setModalState}/>
+
+              </div>
+              <div className="card">
+
+                  <Link className="board-anchors" to={{
+                      pathname: "/StoryDetails",
+                      state: { category: "done", stories: storiesAsObj }
+                  }}>
+                      <h5 className="board-box-title">Done</h5>
+                  </Link> 
+
+                  <BoardBox categStories={storiesAsObj.filter(story => story.category === "done")} modalFunc={setModalState}/>
+              </div>
+          </div>
+        </div>
+          
+
+        <MyVerticallyCenteredModal
+        show={modalState.show}
+        onHide={() => setModalState({show: false, story: modalState.story})}
+        story={modalState.story}
+        />
+
+      </div>
     );  
 }
 

@@ -43,6 +43,25 @@ function Sidebar() {
                             <Link to="/StoryDetails" />
                         </MenuItem>
                     </SubMenu>
+                    <SubMenu title="FOR DEVELOPMENT">
+                        <MenuItem>
+                            login
+                            <Link to="/login" />
+                        </MenuItem>
+                        <MenuItem>
+                            signup
+                            <Link to="/signup" />
+                        </MenuItem>
+                        <MenuItem>
+                            create story
+                            <Link to="/CreateStory" />
+                        </MenuItem>
+                        <MenuItem>
+                            Board by date
+                            <Link to="/BoardByDate" />
+                        </MenuItem>
+                        
+                    </SubMenu>
                 </Menu>
             </SidebarContent>
 
