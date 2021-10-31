@@ -1,5 +1,5 @@
 export class Story {
-    constructor(title, description, time, assigner, assignee, priority, category, dateCreated) {
+    constructor(title, description, time, assigner, assignee, priority, category, date_created) {
         this.title = title;
         this.description = description;
         this.time = time;
@@ -7,7 +7,7 @@ export class Story {
         this.assignee = assignee;
         this.priority = priority;
         this.category = category;
-        this.dateCreated = dateCreated;
+        this.date_created = date_created;
     }
 }
 

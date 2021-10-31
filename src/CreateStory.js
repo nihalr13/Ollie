@@ -89,7 +89,8 @@ function CreateStory() {
                 
                 const timeElapsed = Date.now();
                 const created = new Date(timeElapsed);
-                var dateVal = created.toUTCString();
+                var dateVal = created.getFullYear() + "-" + created.getMonth() + "-" + created.getDate();
+                //var dateVal = created.toUTCString();
 
                 const story = {
                     name:state.storyName,
