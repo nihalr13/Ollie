@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getDatabase, ref, onValue } from "firebase/database";
 import Sidebar from '../Sidebar/Sidebar'
@@ -22,9 +22,13 @@ var dateVal = created.toUTCString();
 
 function Board() {
     //#region Iterate through all of the stories in the database
+  
+  const [storiesAsObj, setStories] = useState([]);
+  
+  useEffect(() => {
+    
     const db = getDatabase();
     const dbRef = ref(db, 'stories');
-
     var childNames = [];
     var childDescriptions = [];
     var childTimes = [];
@@ -43,16 +47,25 @@ function Board() {
         childCategories.push(childCategory);
         childPriorities.push(childPriority);
       });
+      const assigner_ = "Qusai";
+      const assignee_ = "Bob";
+      var storiesAsObj = [];
+
+      //Store stories as objects based on 
+      for (var i = 0; i < childNames.length; i++) {
+        storiesAsObj.push(new Story(childNames[i], childDescriptions[i], childTimes[i], assigner_, assignee_, childPriorities[i], childCategories[i]));
+      }
+
+      console.log(storiesAsObj);
+
+      setStories(storiesAsObj);
     });
 
-    const assigner_ = "Qusai";
-    const assignee_ = "Bob";
-    var storiesAsObj = [];
+  });
+    
+    
 
-    //Store stories as objects based on 
-    for (var i = 0; i < childNames.length; i++) {
-        storiesAsObj.push(new Story(childNames[i], childDescriptions[i], childTimes[i], assigner_, assignee_, childPriorities[i], childCategories[i]));
-  }
+    
   
   //#endregion
 
