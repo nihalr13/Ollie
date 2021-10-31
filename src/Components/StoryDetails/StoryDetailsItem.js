@@ -12,6 +12,7 @@ function StoryDetailsItem(props) {
             <h5 className="story-category">Category: {props.category}</h5>
             <h5 className="story-assignee">Assignee: {props.assignee}</h5>
             <h5 className="story-assigner">Assigner: {props.assigner}</h5>
+            <h5 className="story-date_created">Date Created: {props.date_created}</h5>
         </div>
 
     </div>;

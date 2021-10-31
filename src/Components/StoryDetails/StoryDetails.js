@@ -29,6 +29,7 @@ function StoryDetails(props) {
                  category = {story.category}
                  assignee = {story.assignee}
                  assigner = {story.assigner}
+                 date_created = {story.date_created}
                 />
 
             ))}

@@ -30,6 +30,7 @@ function Board() {
     var childTimes = [];
     var childCategories = [];
     var childPriorities = [];
+    var childDates = [];
     onValue(dbRef, (snapshot) => {
       snapshot.forEach((childSnapshot) => {
         const childName = childSnapshot.val().name;
@@ -37,11 +38,14 @@ function Board() {
         const childTime = childSnapshot.val().estimated_time;
         const childCategory = childSnapshot.val().category;
         const childPriority = childSnapshot.val().priority;
+        const childDate = childSnapshot.val().date_created;
+        //alert(childDate);
         childNames.push(childName);
         childDescriptions.push(childDesc);
         childTimes.push(childTime);
         childCategories.push(childCategory);
         childPriorities.push(childPriority);
+        childDates.push(childDate);
       });
     });
 
@@ -51,7 +55,7 @@ function Board() {
 
     //Store stories as objects based on 
     for (var i = 0; i < childNames.length; i++) {
-        storiesAsObj.push(new Story(childNames[i], childDescriptions[i], childTimes[i], assigner_, assignee_, childPriorities[i], childCategories[i]));
+        storiesAsObj.push(new Story(childNames[i], childDescriptions[i], childTimes[i], assigner_, assignee_, childPriorities[i], childCategories[i], childDates[i]));
   }
   
   //#endregion
@@ -131,12 +135,15 @@ function MyVerticallyCenteredModal(props) {
     var time;
     var priority;
     var category;
+    var date;
     if (props.story != null) {
         title = props.story.title
         description = props.story.description;
         time = props.story.time;
         priority = props.story.priority;
         category = props.story.category;
+        date = props.story.date_created;
+        alert(props.story.date_created);
     }
     var priorityColor = "";
     if (priority == "high") {
@@ -173,6 +180,9 @@ function MyVerticallyCenteredModal(props) {
             <font color = {priorityColor}>
             {priority}
             </font>
+        </p>
+        <p>
+            Date Created: {date}
         </p>
       </Modal.Body>
       <Modal.Footer>
