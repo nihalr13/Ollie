@@ -134,7 +134,6 @@ function BoardByDate() {
                   <BoardBox categStories={storiesAsObj.filter(story => story.category === "done")} modalFunc={setModalState}/>
               </div>
           </div>
-          <p>Hello</p>
         </div>
           
 
