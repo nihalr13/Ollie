@@ -57,7 +57,7 @@ function Board() {
 
       //Store stories as objects based on 
       for (var i = 0; i < childNames.length; i++) {
-        storiesAsObj.push(new Story(childNames[i], childDescriptions[i], childTimes[i], assigner_, assignee_, childPriorities[i], childCategories[i]));
+        storiesAsObj.push(new Story(childNames[i], childDescriptions[i], childTimes[i], assigner_, assignee_, childPriorities[i], childCategories[i], childDates[i]));
       }
 
       console.log(storiesAsObj);
@@ -156,7 +156,7 @@ function MyVerticallyCenteredModal(props) {
         priority = props.story.priority;
         category = props.story.category;
         date = props.story.date_created;
-        alert(props.story.date_created);
+        //alert(props.story.date_created);
     }
     var priorityColor = "";
     if (priority == "high") {
