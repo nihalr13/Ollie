@@ -17,15 +17,12 @@
 
 .container {
     display: flex;
-    margin: 0 auto;
-}
-
-.container>* {
-    margin: 0 auto;
+    margin: auto auto;
 }
 
 .card {
     width: 14rem;
+    margin: 10px;
 }
 
 .board-box-title {
@@ -34,21 +31,42 @@
 
 .story-in-board {
     outline: 1px solid;
-    display: grid;
-    grid-auto-flow: column;
-    grid-column-gap: 90px;
+    display: -webkit-flex;
+    display: flex;
     height: 33px;
+    clear: both;
 }
 
-.story-title .time-estimate {
-    display: flex;
-    padding: 0.5em 0.5em
+.story-title {
+    -webkit-flex: initial;
+    flex: initial;
+    width: 63%;
+    margin: 5px 0 auto 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.time-estimate {
+    -webkit-flex: 1;
+    flex: 1;
+    width: auto;
+    margin: 5px 0 auto 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .indiv-story-anchor,
 .board-anchors {
     color: inherit;
     cursor: pointer;
+    text-decoration: none;
+}
+
+.indiv-story-anchor:hover,
+.board-anchors:hover {
+    color: #555251;
 }
 
 
