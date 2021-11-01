@@ -19,7 +19,8 @@ const timeElapsed = Date.now();
 const created = new Date(timeElapsed);
 var dateVal = created.toUTCString();
 
-
+const db = getDatabase();
+const dbRef = ref(db, 'stories');
 function Board() {
     //#region Iterate through all of the stories in the database
   
@@ -27,8 +28,7 @@ function Board() {
   
   useEffect(() => {
     
-    const db = getDatabase();
-    const dbRef = ref(db, 'stories');
+    
     var childNames = [];
     var childDescriptions = [];
     var childTimes = [];
@@ -140,6 +140,7 @@ function Board() {
         show={modalState.show}
         onHide={() => setModalState({show: false, story: modalState.story})}
         story={modalState.story}
+        deleteStory={() => { if (window.confirm("Are you sure you want to delete this story?")) { alert("deleting story"); dbRef.removeValue(this.story.title) } }}
         />
 
       </div>
@@ -201,9 +202,11 @@ function MyVerticallyCenteredModal(props) {
         <p>
             Date Created: {date}
         </p>
+        
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
+        <Button onClick={props.deleteStory}>Delete Story</Button>
+        <Button onClick={props.onHide}>Close</Button>   
       </Modal.Footer>
     </Modal>
   );
