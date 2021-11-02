@@ -1,8 +1,12 @@
 import React from 'react';
 import {Link } from "react-router-dom";
-import { ProSidebar, Menu, MenuItem, SubMenu , SidebarHeader, SidebarContent, SidebarFooter} from 'react-pro-sidebar';
 import './Sidebar.sass'
 import logo from "../../Ollie-logo.png"
+
+// Sidebar component from https://github.com/azouaoui-med/react-pro-sidebar
+import { ProSidebar, Menu, MenuItem, SubMenu , SidebarHeader, SidebarContent, SidebarFooter} from 'react-pro-sidebar';
+
+//
 
 function Sidebar() {
     return (
