@@ -22,7 +22,8 @@ const Profile = () => {
     const initialState = {
         isEdit: false,
         name: currUser.name,
-        email: currUser.email
+        email: currUser.email,
+        github: currUser.github
     }
 
 
@@ -34,20 +35,21 @@ const Profile = () => {
         setState({
             isEdit: true,
             name: state.name,
-            email: state.email
+            email: state.email,
+            github: state.github
         })
     }
 
     const handleSave = (event) => {
         currUser.name = state.name;
         currUser.email = state.email;
-
-        console.log(currUser.name, state.name, currUser.email, state.email)
+        currUser.github = state.github;
 
         setState({
             isEdit: false,
             name: state.name,
-            email: state.email
+            email: state.email,
+            github: state.github
         })
     }
 
@@ -55,17 +57,26 @@ const Profile = () => {
         setState({
             isEdit: state.isEdit,
             name: event.target.value,
-            email: state.email
+            email: state.email,
+            github: state.github
         })
-        console.log("nice")
     }
 
     const handleChangeEmail = (event) => {
-        console.log(event.target.value)
         setState({
             isEdit: state.isEdit,
             name: state.name,
-            email: event.target.value
+            email: event.target.value,
+            github: state.github
+        })
+    }
+
+    const handleChangeGithub = (event) => {
+        setState({
+            isEdit: state.isEdit,
+            name: state.name,
+            email: state.email,
+            github: event.target.value
         })
     }
 
@@ -78,7 +89,7 @@ const Profile = () => {
     if (state.isEdit) {
         fullNameComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeName} value={state.name}></input></Col>;
         EmailComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeEmail} value={state.email}></input></Col>;
-        GitComp = <Col md="auto" lg="auto">{currUser.github}</Col>;
+        GitComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeGithub} value={state.github}></input></Col>;;
         ProjectsComp = <Col md="auto" lg="auto">{currUser.projects}</Col>;
         button = <button id="edit-btn" onClick={handleSave}>Save Changes</button>;
     }

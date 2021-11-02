@@ -1,42 +1,47 @@
 import React from "react";
 import StoryDetailsItem from './StoryDetailsItem'
 import { useLocation } from 'react-router-dom'
+import './StoryDetails.css'
+
+import Sidebar from "../Sidebar/Sidebar"
+
 
 function StoryDetails(props) {
 
     const location = useLocation();
     let {category, stories} = location.state;
 
-    console.log(stories)
+    // console.log(stories)
 
     stories = stories.filter(story => story.category === category);
 
-    console.log(stories)
+    // console.log(stories)
 
-    return <div>
+    return (
+        <div id="StoryDetails">
 
-        <div className="header">
-            {category} Stories
-        </div>
+            <div id="sidebar">
+                <Sidebar />
+            </div>
 
-        <div className="container">
-            {stories.map((story) => (
-                <StoryDetailsItem
-                 title = {story.title}
-                 time = {story.time}
-                 description = {story.description}
-                 priority = {story.priority}
-                 category = {story.category}
-                 assignee = {story.assignee}
-                 assigner = {story.assigner}
-                 date_created = {story.date_created}
-                />
+            <div id="story-details-content">
+                {stories.map((story) => (
+                    <StoryDetailsItem
+                        title={story.title}
+                        time={story.time}
+                        description={story.description}
+                        priority={story.priority}
+                        category={story.category}
+                        assignee={story.assignee}
+                        assigner={story.assigner}
+                        date_created={story.date_created}
+                    />
 
-            ))}
+                ))}
 
-        </div>
+            </div>
 
-    </div>;
+        </div>);
 }
 
 
