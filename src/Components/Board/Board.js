@@ -21,14 +21,13 @@ var dateVal = created.toUTCString();
 
 const db = getDatabase();
 const dbRef = ref(db, 'stories');
+
 function Board() {
     //#region Iterate through all of the stories in the database
   
   const [storiesAsObj, setStories] = useState([]);
   
   useEffect(() => {
-    
-    
     var childNames = [];
     var childDescriptions = [];
     var childTimes = [];
@@ -128,7 +127,7 @@ function Board() {
               </div>
           </div>
 
-          
+
           <Link to="/BoardByDate"><button>
           Board By Date
           </button> 
