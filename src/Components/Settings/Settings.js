@@ -12,7 +12,7 @@ const db = getDatabase(app);
 
 class Settings extends Component {
 
-  DeleteAcc() {
+  DeleteAcc = () => {
     const auth = getAuth();
     const user = auth.currentUser;
     if (window.confirm("Are you sure you want to delete this account?")) {
@@ -21,8 +21,7 @@ class Settings extends Component {
         // User deleted, so sign them out and navigate to log-in page.
         this.props.history.push("/login");
       }).catch((error) => {
-        // An error ocurred
-        // ...
+        console.log(error);
       });
     } else {
       // remove popup and do nothing

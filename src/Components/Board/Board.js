@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, update } from "firebase/database";
 import Sidebar from '../Sidebar/Sidebar'
 
 // Custom Components and CSS
@@ -23,10 +23,10 @@ const db = getDatabase();
 const dbRef = ref(db, 'stories');
 
 function Board() {
-    //#region Iterate through all of the stories in the database
-  
+  //#region Iterate through all of the stories in the database
+
   const [storiesAsObj, setStories] = useState([]);
-  
+
   useEffect(() => {
     var childNames = [];
     var childDescriptions = [];
@@ -63,117 +63,116 @@ function Board() {
     });
 
   });
-    
-    
 
-    
-  
+
+
+
+
   //#endregion
 
-    const [modalState, setModalState] = useState({
-        show: false,
-        story: null
-    });
+  const [modalState, setModalState] = useState({
+    show: false,
+    story: null
+  });
 
-    return (
-      <div id="Board">
-        <div id="sidebar">
-          <Sidebar />
-        </div>
-        <div id="board-content">
-          <div className="container">
-              <div className="card">
-                  <Link className="board-anchors" to={{
-                      pathname: "/StoryDetails",
-                      state: { category: "backlog", stories: storiesAsObj }
-                  }}>
-                      <h5 className="board-box-title">Backlog</h5>
-                  </Link>
-                  <BoardBox categStories={storiesAsObj.filter(story => story.category === "backlog")} modalFunc={setModalState}/>
-              </div>
-              <div className="card">
-
-                  <Link className="board-anchors" to={{
-                      pathname: "/StoryDetails",
-                      state: { category: "inprogress", stories: storiesAsObj }
-                  }}>
-                      <h5 className="board-box-title">In Progress</h5>
-                  </Link>
-
-                  <BoardBox categStories={storiesAsObj.filter(story => story.category === "in_progress")} modalFunc={setModalState}/>
-              </div>
-              <div className="card">
-
-                  <Link className="board-anchors" to={{
-                      pathname: "/StoryDetails",
-                      state: { category: "blocked", stories: storiesAsObj }
-                  }}>
-                      <h5 className="board-box-title">Blocked</h5>
-                  </Link>
-                  
-                  <BoardBox categStories={storiesAsObj.filter(story => story.category === "blocked")} modalFunc={setModalState}/>
-
-              </div>
-              <div className="card">
-
-                  <Link className="board-anchors" to={{
-                      pathname: "/StoryDetails",
-                      state: { category: "done", stories: storiesAsObj }
-                  }}>
-                      <h5 className="board-box-title">Done</h5>
-                  </Link> 
-
-                  <BoardBox categStories={storiesAsObj.filter(story => story.category === "done")} modalFunc={setModalState}/>
-              </div>
-          </div>
-
-
-          <Link to="/BoardByDate"><button>
-          Board By Date
-          </button> 
-          <br></br>
-          <br></br>
-          </Link>
-        </div>
-          
-
-        <MyVerticallyCenteredModal
-        show={modalState.show}
-        onHide={() => setModalState({show: false, story: modalState.story})}
-        story={modalState.story}
-        deleteStory={() => { if (window.confirm("Are you sure you want to delete this story?")) { alert("deleting story"); dbRef.removeValue(this.story.title) } }}
-        />
-
+  return (
+    <div id="Board">
+      <div id="sidebar">
+        <Sidebar />
       </div>
-    );  
+      <div id="board-content">
+        <div className="container">
+          <div className="card">
+            <Link className="board-anchors" to={{
+              pathname: "/StoryDetails",
+              state: { category: "backlog", stories: storiesAsObj }
+            }}>
+              <h5 className="board-box-title">Backlog</h5>
+            </Link>
+            <BoardBox categStories={storiesAsObj.filter(story => story.category === "backlog")} modalFunc={setModalState} />
+          </div>
+          <div className="card">
+
+            <Link className="board-anchors" to={{
+              pathname: "/StoryDetails",
+              state: { category: "inprogress", stories: storiesAsObj }
+            }}>
+              <h5 className="board-box-title">In Progress</h5>
+            </Link>
+
+            <BoardBox categStories={storiesAsObj.filter(story => story.category === "in_progress")} modalFunc={setModalState} />
+          </div>
+          <div className="card">
+
+            <Link className="board-anchors" to={{
+              pathname: "/StoryDetails",
+              state: { category: "blocked", stories: storiesAsObj }
+            }}>
+              <h5 className="board-box-title">Blocked</h5>
+            </Link>
+
+            <BoardBox categStories={storiesAsObj.filter(story => story.category === "blocked")} modalFunc={setModalState} />
+
+          </div>
+          <div className="card">
+
+            <Link className="board-anchors" to={{
+              pathname: "/StoryDetails",
+              state: { category: "done", stories: storiesAsObj }
+            }}>
+              <h5 className="board-box-title">Done</h5>
+            </Link>
+
+            <BoardBox categStories={storiesAsObj.filter(story => story.category === "done")} modalFunc={setModalState} />
+          </div>
+        </div>
+
+
+        <Link to="/BoardByDate"><button>
+          Board By Date
+        </button>
+          <br></br>
+          <br></br>
+        </Link>
+      </div>
+
+
+      <MyVerticallyCenteredModal
+        show={modalState.show}
+        onHide={() => setModalState({ show: false, story: modalState.story })}
+        story={modalState.story}
+      />
+
+    </div>
+  );
 }
 
 function MyVerticallyCenteredModal(props) {
-    var title;
-    var description;
-    var time;
-    var priority;
-    var category;
-    var date;
-    if (props.story != null) {
-        title = props.story.title
-        description = props.story.description;
-        time = props.story.time;
-        priority = props.story.priority;
-        category = props.story.category;
-        date = props.story.dateCreated;
-        //alert(props.story.date_created);
-    }
-    var priorityColor = "";
-    if (priority == "high") {
-        priorityColor = "red";
-    }
-    if (priority == "medium") {
-        priorityColor = "orange";
-    }
-    if (priority == "low") {
-        priorityColor = "green";
-    }
+  var title;
+  var description;
+  var time;
+  var priority;
+  var category;
+  var date;
+  if (props.story != null) {
+    title = props.story.title
+    description = props.story.description;
+    time = props.story.time;
+    priority = props.story.priority;
+    category = props.story.category;
+    date = props.story.dateCreated;
+    //alert(props.story.date_created);
+  }
+  var priorityColor = "";
+  if (priority == "high") {
+    priorityColor = "red";
+  }
+  if (priority == "medium") {
+    priorityColor = "orange";
+  }
+  if (priority == "low") {
+    priorityColor = "green";
+  }
   return (
     <Modal
       {...props}
@@ -192,22 +191,30 @@ function MyVerticallyCenteredModal(props) {
           {description}
         </p>
         <p>
-            Time Estimate: {time}
+          Time Estimate: {time}
         </p>
         <p>
-            Priority of this story: 
-            <font color = {priorityColor}>
+          Priority of this story:
+          <font color={priorityColor}>
             {priority}
-            </font>
+          </font>
         </p>
         <p>
-            Date Created: {date}
+          Date Created: {date}
         </p>
-        
+
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.deleteStory}>Delete Story</Button>
-        <Button onClick={props.onHide}>Close</Button>   
+
+
+        <Button onClick={() => {
+          if (window.confirm("Are you sure you want to delete this story?")) {
+            const updates = {};
+            updates['/stories/' + props.story.title] = null;
+            update(ref(db), updates);
+          }
+        }}>Delete Story</Button>
+        <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
   );
