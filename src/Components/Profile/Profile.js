@@ -4,9 +4,28 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { useState } from 'react';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Sidebar from '../Sidebar/Sidebar'
+
+const auth = getAuth();
+const user = auth.currentUser;
+if (user !== null) {
+  // The user object has basic properties such as display name, email, etc.
+  const displayName = user.displayName;
+  const email = user.email;
+  const photoURL = user.photoURL;
+  const emailVerified = user.emailVerified;
+  console.log(user.email);
+
+  // The user's ID, unique to the Firebase project. Do NOT use
+  // this value to authenticate with your backend server, if
+  // you have one. Use User.getToken() instead.
+  const uid = user.uid;
+} else {
+  console.log("user is null");
+}
 
 //sidebar component from https://reactjsexample.com/minimal-side-navigation-component-for-react/
-import Sidebar from '../Sidebar/Sidebar'
 
 const currUser = {
     name: "Qusai",
