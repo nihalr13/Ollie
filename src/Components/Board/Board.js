@@ -77,9 +77,11 @@ function Board() {
 
     return (
       <div id="Board">
+
         <div id="sidebar">
           <Sidebar />
         </div>
+        
         <div id="board-content">
           <div className="container">
               <div className="card">
