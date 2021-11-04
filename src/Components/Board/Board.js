@@ -62,7 +62,7 @@ function Board() {
       setStories(storiesAsObj);
     });
 
-  });
+  }, []);
 
 
 
