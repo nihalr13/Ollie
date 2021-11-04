@@ -58,9 +58,10 @@ function BoardByDate() {
       //Store stories as objects based on 
       for (var i = 0; i < childNames.length; i++) {
         const createdAsDate = new Date(childDates[i]);
-        //a diff value of 1 indicates the createdDate equals today's date
-        const diff = today.getDate() - createdAsDate.getDate();
-        if (diff <= 1) {
+        //Calculated difference based on javapoint tutorial
+        const diff = today.getTime() - createdAsDate.getTime();
+        const diffDays = diff / (1000 * 60 * 60 * 24);
+        if (diffDays <= 6) {
             storiesAsObj.push(new Story(childNames[i], childDescriptions[i], childTimes[i], assigner_, assignee_, childPriorities[i], childCategories[i], childDates[i]));
         }
       }
@@ -80,8 +81,17 @@ function BoardByDate() {
 
     const [modalState, setModalState] = useState({
         show: false,
-        story: null
+        story: null,
+        dayRange: 0
     });
+
+
+  const handleChange = e => {
+      setModalState({
+          ...modalState,
+          [e.target.name]: e.target.value,
+      })
+  }
 
     return (
       <div id="Board">
@@ -134,6 +144,17 @@ function BoardByDate() {
                   <BoardBox categStories={storiesAsObj.filter(story => story.category === "done")} modalFunc={setModalState}/>
               </div>
           </div>
+          <form>
+          <label>
+              Day Range:{" "} 
+              <input 
+                type="number" 
+                name="dayRange"
+                value={modalState.dayRange} 
+                onChange={handleChange}
+              />
+          </label>
+          </form>
         </div>
           
 

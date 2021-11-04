@@ -3,6 +3,16 @@ import './App.css';
 import React, { Component } from "react";
 import Button from "./Button.js";
 import {Link } from "react-router-dom";
+import { getAuth, signOut } from "firebase/auth";
+
+function signout() {
+  const auth = getAuth();
+  signOut(auth).then(() => {
+    alert("Signed out successfully.");
+  }).catch((error) => {
+    alert(error);
+  });
+}
 
 function App() {
   return (
@@ -14,6 +24,7 @@ function App() {
         <Link to="/login"><button>
           Login
           </button>
+          <button onClick={signout}>Sign-out</button> 
           </Link>
           <Link to="/signup"><button>
           Sign-up
@@ -49,7 +60,8 @@ function App() {
           </Link>
           <Link to="/Sidebar"><button>
           Sidebar
-          </button> 
+          </button>
+          
           <br></br>
           <br></br>
           </Link>
