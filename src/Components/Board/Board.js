@@ -62,7 +62,7 @@ function Board() {
       setStories(storiesAsObj);
     });
 
-  });
+  }, []);
 
 
 
@@ -128,8 +128,20 @@ function Board() {
         </div>
 
 
-        <Link to="/BoardByDate"><button>
+        <Link to="/DayRangeEntry"><button>
           Board By Date
+        </button>
+          <br></br>
+          <br></br>
+        </Link>
+        <Link to="/PrioritySelection"><button>
+          Board By Priority
+        </button>
+          <br></br>
+          <br></br>
+        </Link>
+        <Link to="/TimeEstimateEntry"><button>
+          Board By Time Estimate
         </button>
           <br></br>
           <br></br>

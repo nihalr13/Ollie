@@ -7,11 +7,16 @@ import { getAuth, signOut } from "firebase/auth";
 
 function signout() {
   const auth = getAuth();
-  signOut(auth).then(() => {
-    alert("Signed out successfully.");
-  }).catch((error) => {
-    alert(error);
-  });
+  const user = auth.currentUser;
+  if (user !== null) {
+    signOut(auth).then(() => {
+      alert("Signed out successfully.");
+    }).catch((error) => {
+      alert(error);
+    });
+  } else {
+    alert("No account is currently signed in.");
+  }
 }
 
 function App() {
@@ -33,12 +38,7 @@ function App() {
         <Link to="/CreateStory"><button>
           Create Story
           </button>
-          <br></br>
-          <br></br>
           </Link>
-          <button>
-            Delete Story
-          </button>
           <br></br>
           <Link to="/Board"><button>
           View Board

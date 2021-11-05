@@ -13,6 +13,11 @@ import Login from './login.component';
 import Signup from './signup.component';
 import Profile from "./Components/Profile/Profile"
 import BoardByDate from "./Components/Board/BoardByDate";
+import BoardByPriority from "./Components/Board/BoardByPriority";
+import BoardByTimeEstimate from "./Components/Board/BoardByTimeEstimate";
+import DayRangeEntry from "./Components/Board/DayRangeEntry";
+import PrioritySelection from "./Components/Board/PrioritySelection";
+import TimeEstimateEntry from "./Components/Board/TimeEstimateEntry";
 import Sidebar from "./Components/Sidebar/Sidebar"
 
 const rootElement = document.getElementById("root");
@@ -28,7 +33,12 @@ ReactDOM.render(
      <Route path="/login" component={Login} />
      <Route path="/signup" component={Signup} />
      <Route path="/Profile" component={Profile} />
+     <Route path="/DayRangeEntry" component={DayRangeEntry} />
+     <Route path="/PrioritySelection" component={PrioritySelection} />
+     <Route path="/TimeEstimateEntry" component={TimeEstimateEntry} />
      <Route path="/BoardByDate" component={BoardByDate} />
+     <Route path="/BoardByPriority" component={BoardByPriority} />
+     <Route path="/BoardByTimeEstimate" component={BoardByTimeEstimate} />
      <Route path="/Sidebar" component={Sidebar} />
    </Switch>
   </BrowserRouter>,

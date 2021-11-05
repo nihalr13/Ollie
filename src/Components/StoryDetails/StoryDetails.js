@@ -25,6 +25,7 @@ function StoryDetails(props) {
             <div id="story-details-content">
                 {stories.map((story) => (
                     <StoryDetailsItem
+                        story={story}
                         title={story.title}
                         time={story.time}
                         description={story.description}

@@ -9,19 +9,13 @@ import Header from "./Header/Header";
 import BoardBox from "./BoardBox/BoardBox";
 import './Board.css';
 import './Header/Header.css';
-import { val } from "./DayRangeEntry";
+import { timeEstimate } from "./TimeEstimateEntry";
 
 // Bootstrap Components
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-//Code to find date and time is from freeCodeCamp tutorial
-const timeElapsed = Date.now();
-const today = new Date(timeElapsed);
-var dateVal = today.toUTCString();
-
-
-function BoardByDate() {
+function BoardByTimeEstimate() {
     //#region Iterate through all of the stories in the database
   
   const [storiesAsObj, setStories] = useState([]);
@@ -58,11 +52,7 @@ function BoardByDate() {
 
       //Store stories as objects based on 
       for (var i = 0; i < childNames.length; i++) {
-        const createdAsDate = new Date(childDates[i]);
-        //Calculated difference based on javapoint tutorial
-        const diff = today.getTime() - createdAsDate.getTime();
-        const diffDays = diff / (1000 * 60 * 60 * 24);
-        if (diffDays <= val) {
+        if (childTimes[i] <= timeEstimate) {
             storiesAsObj.push(new Story(childNames[i], childDescriptions[i], childTimes[i], assigner_, assignee_, childPriorities[i], childCategories[i], childDates[i]));
         }
       }
@@ -154,14 +144,14 @@ function BoardByDate() {
           <br></br>
           <br></br>
         </Link>
-        <Link to="/PrioritySelection"><button>
-          Board By Priority
+        <Link to="/DayRangeEntry"><button>
+          Board By Date
         </button>
           <br></br>
           <br></br>
         </Link>
-        <Link to="/TimeEstimateEntry"><button>
-          Board By Time Estimate
+        <Link to="/PrioritySelection"><button>
+          Board By Priority
         </button>
           <br></br>
           <br></br>
@@ -245,4 +235,4 @@ function MyVerticallyCenteredModal(props) {
 
 //export { created };
 //export { dateVal };
-export default BoardByDate;
+export default BoardByTimeEstimate;

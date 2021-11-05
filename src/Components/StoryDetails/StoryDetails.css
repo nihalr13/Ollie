@@ -45,6 +45,15 @@
     cursor: pointer;
 }
 
+.fav-btn-yellow {
+    background-color: DodgerBlue;
+    border: none;
+    font-size: 20px;
+    margin-right: 0;
+    cursor: pointer;
+    color: yellow;
+}
+
 .star-icon {
     margin: auto;
 }
