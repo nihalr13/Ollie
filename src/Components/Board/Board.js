@@ -134,9 +134,14 @@ function Board() {
           <br></br>
           <br></br>
         </Link>
-        <br></br>
         <Link to="/PrioritySelectionEntry"><button>
           Board By Priority
+        </button>
+          <br></br>
+          <br></br>
+        </Link>
+        <Link to="/TimeEstimateEntry"><button>
+          Board By Time Estimate
         </button>
           <br></br>
           <br></br>
