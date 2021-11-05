@@ -134,6 +134,13 @@ function Board() {
           <br></br>
           <br></br>
         </Link>
+        <br></br>
+        <Link to="/PrioritySelectionEntry"><button>
+          Board By Priority
+        </button>
+          <br></br>
+          <br></br>
+        </Link>
       </div>
 
 

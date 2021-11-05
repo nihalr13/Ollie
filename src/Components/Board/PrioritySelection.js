@@ -14,13 +14,13 @@ import './Header/Header.css';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-var val = 0;
+var prioritySelection = "";
 
-function DayRangeEntry() {
+function PrioritySelectionEntry() {
     const [state, setState] = useState({
-        dayRange: 0
+        prioritySelection: "low"
     })
-    val = state.dayRange;
+    prioritySelection = state.prioritySelection;
 
     const handleChange = e => {
         setState({
@@ -32,17 +32,20 @@ function DayRangeEntry() {
   return (
   <div>
       <form>
-          <label>
-          Day Range:{" "} 
-              <input 
-                type="number" 
-                name="dayRange"
-                value={state.dayRange} 
-                onChange={handleChange}
-              />   
-          </label>
+            <label>
+                    Priority:
+                    <select
+                        name="prioritySelection"
+                        value={state.prioritySelection} 
+                        onChange={handleChange}
+                    >
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                    </select>
+            </label>
       </form>
-      <Link to="/BoardByDate"><button>
+      <Link to="/BoardByPriority"><button>
           Next
         </button>
           <br></br>
@@ -52,5 +55,5 @@ function DayRangeEntry() {
   );
 }
 
-export { val };
-export default DayRangeEntry;
+export { prioritySelection };
+export default PrioritySelectionEntry;
