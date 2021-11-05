@@ -38,12 +38,7 @@ function App() {
         <Link to="/CreateStory"><button>
           Create Story
           </button>
-          <br></br>
-          <br></br>
           </Link>
-          <button>
-            Delete Story
-          </button>
           <br></br>
           <Link to="/Board"><button>
           View Board
