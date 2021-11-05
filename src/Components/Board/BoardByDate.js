@@ -9,6 +9,7 @@ import Header from "./Header/Header";
 import BoardBox from "./BoardBox/BoardBox";
 import './Board.css';
 import './Header/Header.css';
+import { val } from "./DayRangeEntry";
 
 // Bootstrap Components
 import Modal from 'react-bootstrap/Modal';
@@ -61,7 +62,7 @@ function BoardByDate() {
         //Calculated difference based on javapoint tutorial
         const diff = today.getTime() - createdAsDate.getTime();
         const diffDays = diff / (1000 * 60 * 60 * 24);
-        if (diffDays <= 6) {
+        if (diffDays <= val) {
             storiesAsObj.push(new Story(childNames[i], childDescriptions[i], childTimes[i], assigner_, assignee_, childPriorities[i], childCategories[i], childDates[i]));
         }
       }
@@ -82,7 +83,7 @@ function BoardByDate() {
     const [modalState, setModalState] = useState({
         show: false,
         story: null,
-        dayRange: 0
+        //dayRange: 0
     });
 
 
@@ -144,17 +145,6 @@ function BoardByDate() {
                   <BoardBox categStories={storiesAsObj.filter(story => story.category === "done")} modalFunc={setModalState}/>
               </div>
           </div>
-          <form>
-          <label>
-              Day Range:{" "} 
-              <input 
-                type="number" 
-                name="dayRange"
-                value={modalState.dayRange} 
-                onChange={handleChange}
-              />
-          </label>
-          </form>
         </div>
           
 

@@ -128,7 +128,7 @@ function Board() {
         </div>
 
 
-        <Link to="/BoardByDate"><button>
+        <Link to="/DayRangeEntry"><button>
           Board By Date
         </button>
           <br></br>

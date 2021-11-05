@@ -13,6 +13,7 @@ import Login from './login.component';
 import Signup from './signup.component';
 import Profile from "./Components/Profile/Profile"
 import BoardByDate from "./Components/Board/BoardByDate";
+import DayRangeEntry from "./Components/Board/DayRangeEntry";
 import Sidebar from "./Components/Sidebar/Sidebar"
 
 const rootElement = document.getElementById("root");
@@ -28,6 +29,7 @@ ReactDOM.render(
      <Route path="/login" component={Login} />
      <Route path="/signup" component={Signup} />
      <Route path="/Profile" component={Profile} />
+     <Route path="/DayRangeEntry" component={DayRangeEntry} />
      <Route path="/BoardByDate" component={BoardByDate} />
      <Route path="/Sidebar" component={Sidebar} />
    </Switch>
