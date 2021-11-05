@@ -16,7 +16,7 @@ import Button from 'react-bootstrap/Button';
 
 var prioritySelection = "";
 
-function PrioritySelectionEntry() {
+function PrioritySelection() {
     const [state, setState] = useState({
         prioritySelection: "low"
     })
@@ -56,4 +56,4 @@ function PrioritySelectionEntry() {
 }
 
 export { prioritySelection };
-export default PrioritySelectionEntry;
+export default PrioritySelection;

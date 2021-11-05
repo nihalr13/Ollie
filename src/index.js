@@ -16,7 +16,7 @@ import BoardByDate from "./Components/Board/BoardByDate";
 import BoardByPriority from "./Components/Board/BoardByPriority";
 import BoardByTimeEstimate from "./Components/Board/BoardByTimeEstimate";
 import DayRangeEntry from "./Components/Board/DayRangeEntry";
-import PrioritySelectionEntry from "./Components/Board/PrioritySelection";
+import PrioritySelection from "./Components/Board/PrioritySelection";
 import TimeEstimateEntry from "./Components/Board/TimeEstimateEntry";
 import Sidebar from "./Components/Sidebar/Sidebar"
 
@@ -34,7 +34,7 @@ ReactDOM.render(
      <Route path="/signup" component={Signup} />
      <Route path="/Profile" component={Profile} />
      <Route path="/DayRangeEntry" component={DayRangeEntry} />
-     <Route path="/PrioritySelectionEntry" component={PrioritySelectionEntry} />
+     <Route path="/PrioritySelection" component={PrioritySelection} />
      <Route path="/TimeEstimateEntry" component={TimeEstimateEntry} />
      <Route path="/BoardByDate" component={BoardByDate} />
      <Route path="/BoardByPriority" component={BoardByPriority} />

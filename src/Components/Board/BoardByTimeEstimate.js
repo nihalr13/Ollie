@@ -135,6 +135,28 @@ function BoardByTimeEstimate() {
                   <BoardBox categStories={storiesAsObj.filter(story => story.category === "done")} modalFunc={setModalState}/>
               </div>
           </div>
+          <div>
+          <br></br>
+          <br></br>    
+          <Link to="/Board"><button>
+          Back to Board
+        </button>
+          <br></br>
+          <br></br>
+        </Link>
+        <Link to="/DayRangeEntry"><button>
+          Board By Date
+        </button>
+          <br></br>
+          <br></br>
+        </Link>
+        <Link to="/PrioritySelection"><button>
+          Board By Priority
+        </button>
+          <br></br>
+          <br></br>
+        </Link>
+        </div>
         </div>
           
 

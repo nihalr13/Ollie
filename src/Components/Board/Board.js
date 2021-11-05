@@ -134,7 +134,7 @@ function Board() {
           <br></br>
           <br></br>
         </Link>
-        <Link to="/PrioritySelectionEntry"><button>
+        <Link to="/PrioritySelection"><button>
           Board By Priority
         </button>
           <br></br>
