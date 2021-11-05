@@ -95,7 +95,7 @@ function Board() {
 
             <Link className="board-anchors" to={{
               pathname: "/StoryDetails",
-              state: { category: "inprogress", stories: storiesAsObj }
+              state: { category: "in_progress", stories: storiesAsObj }
             }}>
               <h5 className="board-box-title">In Progress</h5>
             </Link>
