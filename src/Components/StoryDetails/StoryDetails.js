@@ -11,11 +11,9 @@ function StoryDetails(props) {
     const location = useLocation();
     let {category, stories} = location.state;
 
-    // console.log(stories)
 
     stories = stories.filter(story => story.category === category);
 
-    // console.log(stories)
 
     return (
         <div id="StoryDetails">

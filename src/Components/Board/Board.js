@@ -160,8 +160,7 @@ function MyVerticallyCenteredModal(props) {
     time = props.story.time;
     priority = props.story.priority;
     category = props.story.category;
-    date = props.story.dateCreated;
-    //alert(props.story.date_created);
+    date = props.story.date_created;
   }
   var priorityColor = "";
   if (priority == "high") {
