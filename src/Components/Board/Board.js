@@ -1,11 +1,10 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getDatabase, ref, onValue, update } from "firebase/database";
 import Sidebar from '../Sidebar/Sidebar'
 
 // Custom Components and CSS
 import Story from "../../Classes/Story";
-import Header from "./Header/Header";
 import BoardBox from "./BoardBox/BoardBox";
 import './Board.css';
 import './Header/Header.css';
@@ -42,7 +41,6 @@ function Board() {
         const childCategory = childSnapshot.val().category;
         const childPriority = childSnapshot.val().priority;
         const childDate = childSnapshot.val().date_created;
-        //alert(childDate);
         childNames.push(childName);
         childDescriptions.push(childDesc);
         childTimes.push(childTime);
@@ -63,10 +61,6 @@ function Board() {
     });
 
   }, []);
-
-
-
-
 
   //#endregion
 
@@ -148,7 +142,6 @@ function Board() {
         </Link>
       </div>
 
-
       <MyVerticallyCenteredModal
         show={modalState.show}
         onHide={() => setModalState({ show: false, story: modalState.story })}
@@ -197,27 +190,22 @@ function MyVerticallyCenteredModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>{title}</h4>
+        <h4>Story Name: {title}</h4>
         <p>
-          {description}
+          Time Estimate: {time} hrs
         </p>
         <p>
-          Time Estimate: {time}
-        </p>
-        <p>
-          Priority of this story:
-          <font color={priorityColor}>
-            {priority}
-          </font>
+          Priority of this story: <font color={priorityColor}>{priority}</font>
         </p>
         <p>
           Date Created: {date}
         </p>
-
+        <h4>Brief Story Description: </h4>
+        <p>
+          {description}
+        </p>
       </Modal.Body>
       <Modal.Footer>
-
-
         <Button onClick={() => {
           if (window.confirm("Are you sure you want to delete this story?")) {
             const updates = {};

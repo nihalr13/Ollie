@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, update } from "firebase/database";
 import Sidebar from '../Sidebar/Sidebar'
 
 // Custom Components and CSS
@@ -20,14 +20,13 @@ const timeElapsed = Date.now();
 const today = new Date(timeElapsed);
 var dateVal = today.toUTCString();
 
+const db = getDatabase();
+const dbRef = ref(db, 'stories');
 
 function BoardByDate() {
-    //#region Iterate through all of the stories in the database
-  
+  //#region Iterate through all of the stories in the database
   const [storiesAsObj, setStories] = useState([]);
-  
   useEffect(() => {
-    
     const db = getDatabase();
     const dbRef = ref(db, 'stories');
     var childNames = [];
@@ -56,10 +55,10 @@ function BoardByDate() {
       const assignee_ = "Bob";
       var storiesAsObj = [];
 
-      //Store stories as objects based on 
+      //Store stories as objects
       for (var i = 0; i < childNames.length; i++) {
         const createdAsDate = new Date(childDates[i]);
-        //Calculated difference based on javapoint tutorial
+        //Calculated difference
         const diff = today.getTime() - createdAsDate.getTime();
         const diffDays = diff / (1000 * 60 * 60 * 24);
         if (diffDays <= val) {
@@ -68,23 +67,17 @@ function BoardByDate() {
       }
 
       console.log(storiesAsObj);
-
       setStories(storiesAsObj);
     });
 
   }, []);
     
-    
-
-    
-  
   //#endregion
 
-    const [modalState, setModalState] = useState({
-        show: false,
-        story: null,
-        //dayRange: 0
-    });
+  const [modalState, setModalState] = useState({
+      show: false,
+      story: null,
+  });
 
 
   const handleChange = e => {
@@ -194,7 +187,6 @@ function MyVerticallyCenteredModal(props) {
         priority = props.story.priority;
         category = props.story.category;
         date = props.story.date_created;
-        //alert(props.story.date_created);
     }
     var priorityColor = "";
     if (priority == "high") {
@@ -219,30 +211,33 @@ function MyVerticallyCenteredModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>{title}</h4>
+        <h4>Story Name: {title}</h4>
+        <p>
+          Time Estimate: {time} hrs
+        </p>
+        <p>
+          Priority of this story: <font color={priorityColor}>{priority}</font>
+        </p>
+        <p>
+          Date Created: {date}
+        </p>
+        <h4>Brief Story Description: </h4>
         <p>
           {description}
         </p>
-        <p>
-            Time Estimate: {time}
-        </p>
-        <p>
-            Priority of this story: 
-            <font color = {priorityColor}>
-            {priority}
-            </font>
-        </p>
-        <p>
-            Date Created: {date}
-        </p>
       </Modal.Body>
       <Modal.Footer>
+        <Button onClick={() => {
+          if (window.confirm("Are you sure you want to delete this story?")) {
+            const updates = {};
+            updates['/stories/' + props.story.title] = null;
+            update(ref(db), updates);
+          }
+        }}>Delete Story</Button>
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
   );
 }
 
-//export { created };
-//export { dateVal };
 export default BoardByDate;
