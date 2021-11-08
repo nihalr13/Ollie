@@ -66,10 +66,6 @@ function BoardByTimeEstimate() {
     });
 
   }, []);
-    
-    
-
-    
   
   //#endregion
 

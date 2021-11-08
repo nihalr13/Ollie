@@ -241,6 +241,4 @@ function MyVerticallyCenteredModal(props) {
   );
 }
 
-//export { created };
-//export { dateVal };
 export default BoardByPriority;

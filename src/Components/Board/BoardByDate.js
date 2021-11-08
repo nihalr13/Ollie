@@ -5,7 +5,6 @@ import Sidebar from '../Sidebar/Sidebar'
 
 // Custom Components and CSS
 import Story from "../../Classes/Story";
-import Header from "./Header/Header";
 import BoardBox from "./BoardBox/BoardBox";
 import './Board.css';
 import './Header/Header.css';

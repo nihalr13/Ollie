@@ -112,9 +112,7 @@ function CreateStory() {
                     }}>
                     Next
                 </button> 
-            </div>
-            
-            
+            </div>       
         </div>
     );
 }
