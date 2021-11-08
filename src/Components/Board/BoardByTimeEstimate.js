@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, update } from "firebase/database";
 import Sidebar from '../Sidebar/Sidebar'
 
 // Custom Components and CSS
@@ -14,6 +14,9 @@ import { timeEstimate } from "./TimeEstimateEntry";
 // Bootstrap Components
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+
+const db = getDatabase();
+const dbRef = ref(db, 'stories');
 
 function BoardByTimeEstimate() {
     //#region Iterate through all of the stories in the database
@@ -184,7 +187,6 @@ function MyVerticallyCenteredModal(props) {
         priority = props.story.priority;
         category = props.story.category;
         date = props.story.date_created;
-        //alert(props.story.date_created);
     }
     var priorityColor = "";
     if (priority == "high") {
@@ -203,36 +205,39 @@ function MyVerticallyCenteredModal(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
+       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           Story Details
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>{title}</h4>
+        <h4>Story Name: {title}</h4>
+        <p>
+          Time Estimate: {time} hrs
+        </p>
+        <p>
+          Priority of this story: <font color={priorityColor}>{priority}</font>
+        </p>
+        <p>
+          Date Created: {date}
+        </p>
+        <h4>Brief Story Description: </h4>
         <p>
           {description}
         </p>
-        <p>
-            Time Estimate: {time}
-        </p>
-        <p>
-            Priority of this story: 
-            <font color = {priorityColor}>
-            {priority}
-            </font>
-        </p>
-        <p>
-            Date Created: {date}
-        </p>
       </Modal.Body>
       <Modal.Footer>
+        <Button onClick={() => {
+          if (window.confirm("Are you sure you want to delete this story?")) {
+            const updates = {};
+            updates['/stories/' + props.story.title] = null;
+            update(ref(db), updates);
+          }
+        }}>Delete Story</Button>
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
   );
 }
 
-//export { created };
-//export { dateVal };
 export default BoardByTimeEstimate;
