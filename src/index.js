@@ -7,7 +7,6 @@ import CreateStory from './CreateStory';
 import Board from './Components/Board/Board';
 import Settings from './Components/Settings/Settings'
 import StoryDetails from './Components/StoryDetails/StoryDetails';
-import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './login.component';
 import Signup from './signup.component';
