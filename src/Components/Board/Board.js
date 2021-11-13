@@ -6,8 +6,8 @@ import Sidebar from '../Sidebar/Sidebar'
 // Custom Components and CSS
 import Story from "../../Classes/Story";
 import BoardBox from "./BoardBox/BoardBox";
+import Comment from "../Comments/Comments";
 import './Board.css';
-import './Header/Header.css';
 
 // Bootstrap Components
 import Modal from 'react-bootstrap/Modal';
@@ -22,6 +22,7 @@ const db = getDatabase();
 const dbRef = ref(db, 'stories');
 
 function Board() {
+  
   //#region Iterate through all of the stories in the database
 
   const [storiesAsObj, setStories] = useState([]);
@@ -153,6 +154,31 @@ function Board() {
 }
 
 function MyVerticallyCenteredModal(props) {
+  var children = {text: "we are children", children: []}
+  var parentComments = [{
+    text: "this is good",
+    children: []
+  }, {
+    text: "this is great",
+    children: [{ text: "this is great 2", children: [] }, { text: "this is great 3", children: [] }]
+  }, {
+    text: "This is the best!",
+    children: [{ text: "This is the best! 2", children: [children] }, { text: "This is the best! 3", children: [children, children] }]
+  }];
+  
+  const [newComment, setNewComment] = useState('');
+  const [comments, setComments] = useState(parentComments);
+
+  const handleCommentChange = (event) => {
+    setNewComment(event.target.value);
+  }
+
+  const handleCommentSubmit = (event) => {
+    setComments([...comments, {text: newComment, children: []}])
+    event.preventDefault();
+  }
+  
+  
   var title;
   var description;
   var time;
@@ -204,6 +230,24 @@ function MyVerticallyCenteredModal(props) {
         <p>
           {description}
         </p>
+
+
+        <hr id="comments-section-line"></hr>
+
+        {/* Add section for adding comments */}
+        <h5>Comments</h5>
+
+        <form onSubmit={handleCommentSubmit}>
+          Enter new comment <input type="text" onChange={handleCommentChange}/>
+          <input type="submit"/>
+        </form>
+
+
+
+        {comments.map((comment) => {
+          return <Comment comment={comment} />
+        })}
+
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={() => {
