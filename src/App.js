@@ -31,39 +31,9 @@ function App() {
           </button>
           <button onClick={signout}>Sign-out</button> 
           </Link>
-          <Link to="/signup"><button>
+        <Link to="/signup"><button>
           Sign-up
           </button>
-          </Link>
-        <Link to="/CreateStory"><button>
-          Create Story
-          </button>
-          </Link>
-          <br></br>
-          <Link to="/Board"><button>
-          View Board
-          </button> 
-          <br></br>
-          <br></br>
-          </Link>
-          <Link to="/Settings"><button>
-          Settings
-          </button>
-          <br></br>
-          <br></br> 
-          </Link>
-          <Link to="/Profile"><button>
-          Profile
-          </button> 
-          <br></br>
-          <br></br>
-          </Link>
-          <Link to="/Sidebar"><button>
-          Sidebar
-          </button>
-          
-          <br></br>
-          <br></br>
           </Link>
         <a
           className="App-link"

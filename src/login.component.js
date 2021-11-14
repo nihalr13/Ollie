@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, useHistory } from "react-router-dom";
+
 
 export default class Login extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -33,6 +33,7 @@ export default class Login extends Component {
         // Signed in 
         const user = userCredential.user;
         alert("User successfully signed in");
+        this.props.history.push("/Board");
         // ...
       })
       .catch((error) => {

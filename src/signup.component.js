@@ -44,6 +44,7 @@ export default class Signup extends Component {
         // Signed in 
         const user = userCredential.user;
         alert("User successfully created");
+        this.props.history.push("/Board");
         // ...
       })
       .catch((error) => {
