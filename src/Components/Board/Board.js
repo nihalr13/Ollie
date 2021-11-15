@@ -153,6 +153,19 @@ function Board() {
   );
 }
 
+/* Work in progress email notifications, html below requires user to submit email so will brainstorm
+   effective methods.*/
+
+/*<form action="mailto:you@yourdomainhere.com" method="post"
+  enctype="text/plain" >
+    StoryName:title
+    StoryDescription:description
+    Category:category
+    Priority:priority
+    TimeEstimate:time
+  <input type="submit" name="submit" value="Submit"></input>
+</form>*/
+
 function MyVerticallyCenteredModal(props) {
   var children = {text: "we are children", children: []}
   var parentComments = [{
