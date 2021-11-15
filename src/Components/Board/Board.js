@@ -191,6 +191,66 @@ function MyVerticallyCenteredModal(props) {
     event.preventDefault();
   }
   
+//   const initialState = {
+//     isEdit: false,
+//     name: currUser.name,
+//     email: currUser.email,
+//     github: currUser.github
+// }
+
+
+// const [state, setState] = useState(initialState)
+
+
+
+// const handleEdit = () => {
+//     setState({
+//         isEdit: true,
+//         name: state.name,
+//         email: state.email,
+//         github: state.github
+//     })
+// }
+
+// const handleSave = (event) => {
+//     currUser.name = state.name;
+//     currUser.email = state.email;
+//     currUser.github = state.github;
+
+//     setState({
+//         isEdit: false,
+//         name: state.name,
+//         email: state.email,
+//         github: state.github
+//     })
+// }
+
+// const handleChangeName = (event) => {
+//     setState({
+//         isEdit: state.isEdit,
+//         name: event.target.value,
+//         email: state.email,
+//         github: state.github
+//     })
+// }
+
+// const handleChangeEmail = (event) => {
+//     setState({
+//         isEdit: state.isEdit,
+//         name: state.name,
+//         email: event.target.value,
+//         github: state.github
+//     })
+// }
+
+// const handleChangeGithub = (event) => {
+//     setState({
+//         isEdit: state.isEdit,
+//         name: state.name,
+//         email: state.email,
+//         github: event.target.value
+//     })
+// }
   
   var title;
   var description;
@@ -229,6 +289,21 @@ function MyVerticallyCenteredModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
+      {/* if (state.isEdit) {
+        fullNameComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeName} value={state.name}></input></Col>;
+        EmailComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeEmail} value={state.email}></input></Col>;
+        GitComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeGithub} value={state.github}></input></Col>;;
+        ProjectsComp = <Col md="auto" lg="auto">{currUser.projects}</Col>;
+        button = <button id="edit-btn" onClick={handleSave}>Save Changes</button>;
+      }
+      else {
+        fullNameComp = <Col md="auto" lg="auto">{currUser.name}</Col>;
+        EmailComp = <Col md="auto" lg="auto">{currUser.email}</Col>;
+        GitComp = <Col md="auto" lg="auto">{currUser.github}</Col>;
+        ProjectsComp = <Col md="auto" lg="auto">{currUser.projects}</Col>;
+        button = <button id="edit-btn" onClick={handleEdit}>Edit Profile</button>;
+      } */}
+
         <h4>Story Name: {title}</h4>
         <p>
           Time Estimate: {time} hrs
