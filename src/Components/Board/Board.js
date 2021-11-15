@@ -238,6 +238,21 @@ function MyVerticallyCenteredModal(props) {
 //         github: event.target.value
 //     })
 // }
+
+     // {/* if (state.isEdit) {
+      //   fullNameComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeName} value={state.name}></input></Col>;
+      //   EmailComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeEmail} value={state.email}></input></Col>;
+      //   GitComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeGithub} value={state.github}></input></Col>;;
+      //   ProjectsComp = <Col md="auto" lg="auto">{currUser.projects}</Col>;
+      //   button = <button id="edit-btn" onClick={handleSave}>Save Changes</button>;
+      // }
+      // else {
+      //   fullNameComp = <Col md="auto" lg="auto">{currUser.name}</Col>;
+      //   EmailComp = <Col md="auto" lg="auto">{currUser.email}</Col>;
+      //   GitComp = <Col md="auto" lg="auto">{currUser.github}</Col>;
+      //   ProjectsComp = <Col md="auto" lg="auto">{currUser.projects}</Col>;
+      //   button = <button id="edit-btn" onClick={handleEdit}>Edit Profile</button>;
+      // } */
   
   var title;
   var description;
@@ -276,21 +291,6 @@ function MyVerticallyCenteredModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-      {/* if (state.isEdit) {
-        fullNameComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeName} value={state.name}></input></Col>;
-        EmailComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeEmail} value={state.email}></input></Col>;
-        GitComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeGithub} value={state.github}></input></Col>;;
-        ProjectsComp = <Col md="auto" lg="auto">{currUser.projects}</Col>;
-        button = <button id="edit-btn" onClick={handleSave}>Save Changes</button>;
-      }
-      else {
-        fullNameComp = <Col md="auto" lg="auto">{currUser.name}</Col>;
-        EmailComp = <Col md="auto" lg="auto">{currUser.email}</Col>;
-        GitComp = <Col md="auto" lg="auto">{currUser.github}</Col>;
-        ProjectsComp = <Col md="auto" lg="auto">{currUser.projects}</Col>;
-        button = <button id="edit-btn" onClick={handleEdit}>Edit Profile</button>;
-      } */}
-
         <h4>Story Name: {title}</h4>
         <p>
           Time Estimate: {time} hrs
