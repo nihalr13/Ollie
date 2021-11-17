@@ -18,6 +18,7 @@ import DayRangeEntry from "./Components/Board/DayRangeEntry";
 import PrioritySelection from "./Components/Board/PrioritySelection";
 import TimeEstimateEntry from "./Components/Board/TimeEstimateEntry";
 import Sidebar from "./Components/Sidebar/Sidebar"
+import SendMail from "./StoryEmail"
 
 const rootElement = document.getElementById("root");
 
@@ -39,6 +40,7 @@ ReactDOM.render(
      <Route path="/BoardByPriority" component={BoardByPriority} />
      <Route path="/BoardByTimeEstimate" component={BoardByTimeEstimate} />
      <Route path="/Sidebar" component={Sidebar} />
+     <Route path="/StoryEmail" component={SendMail} />
    </Switch>
   </BrowserRouter>,
   rootElement

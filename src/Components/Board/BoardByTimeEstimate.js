@@ -55,7 +55,7 @@ function BoardByTimeEstimate() {
 
       //Store stories as objects based on 
       for (var i = 0; i < childNames.length; i++) {
-        if (childTimes[i] <= timeEstimate) {
+        if (timeEstimate - childTimes[i] >= 0) {
             storiesAsObj.push(new Story(childNames[i], childDescriptions[i], childTimes[i], assigner_, assignee_, childPriorities[i], childCategories[i], childDates[i]));
         }
       }
