@@ -1,9 +1,5 @@
 import React, { Component } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { getDatabase, ref, set } from "firebase/database";
-import { BrowserRouter as Router, Switch, Route, Link, useHistory } from "react-router-dom";
-
-
 export default class Login extends Component {
   constructor(props) {
     super(props);

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import './index.css';
 import App from './App';
 import CreateStory from './CreateStory';
@@ -23,7 +23,7 @@ import SendMail from "./StoryEmail"
 const rootElement = document.getElementById("root");
 
 ReactDOM.render(
-  <BrowserRouter>
+  <HashRouter basename={process.env.PUBLIC_URL}>
    <Switch>
      <Route exact path="/" component={App} />
      <Route path="/CreateStory" component={CreateStory} />
@@ -42,7 +42,7 @@ ReactDOM.render(
      <Route path="/Sidebar" component={Sidebar} />
      <Route path="/StoryEmail" component={SendMail} />
    </Switch>
-  </BrowserRouter>,
+  </HashRouter>,
   rootElement
 );
 /*ReactDOM.render(
