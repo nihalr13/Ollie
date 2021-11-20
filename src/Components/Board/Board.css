@@ -30,7 +30,8 @@
 }
 
 .story-in-board {
-    outline: 1px solid;
+    outline: 0.2px solid;
+    border-radius: 3px;
     display: -webkit-flex;
     display: flex;
     height: auto;
@@ -43,10 +44,9 @@
     width: 63%;
     height: auto;
     margin: auto 0 auto 5px;
-    /* white-space: nowrap;
+    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; */
-    text-overflow: break-word;
+    text-overflow: ellipsis;
 }
 
 .time-estimate {

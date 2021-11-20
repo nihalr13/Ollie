@@ -12,6 +12,8 @@ import './Board.css';
 // Bootstrap Components
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 //Code to find date and time is from freeCodeCamp tutorial
 const timeElapsed = Date.now();
@@ -22,19 +24,20 @@ const db = getDatabase();
 const dbRef = ref(db, 'stories');
 
 function Board() {
-  
+
   //#region Iterate through all of the stories in the database
 
   const [storiesAsObj, setStories] = useState([]);
+  let firstFetch = true;
 
   useEffect(() => {
-    var childNames = [];
-    var childDescriptions = [];
-    var childTimes = [];
-    var childCategories = [];
-    var childPriorities = [];
-    var childDates = [];
     onValue(dbRef, (snapshot) => {
+      var childNames = [];
+      var childDescriptions = [];
+      var childTimes = [];
+      var childCategories = [];
+      var childPriorities = [];
+      var childDates = [];
       snapshot.forEach((childSnapshot) => {
         const childName = childSnapshot.val().name;
         const childDesc = childSnapshot.val().description;
@@ -51,14 +54,30 @@ function Board() {
       });
       const assigner_ = "Qusai";
       const assignee_ = "Bob";
-      var storiesAsObj = [];
+      var fetchedStories = [];
 
       //Store stories as objects based on 
       for (var i = 0; i < childNames.length; i++) {
-        storiesAsObj.push(new Story(childNames[i], childDescriptions[i], childTimes[i], assigner_, assignee_, childPriorities[i], childCategories[i], childDates[i]));
+        fetchedStories.push(new Story(childNames[i], childDescriptions[i], childTimes[i], assigner_, assignee_, childPriorities[i], childCategories[i], childDates[i]));
       }
 
-      setStories(storiesAsObj);
+      setStories(fetchedStories);
+      if (!firstFetch) {
+        {/* Used to view an alert to users whenever a change happens to the stories in the database */ }
+        toast.info('Stories have been updated!', {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
+      }
+      else {
+        firstFetch = false;
+      }
+      
     });
 
   }, []);
@@ -148,6 +167,20 @@ function Board() {
         onHide={() => setModalState({ show: false, story: modalState.story })}
         story={modalState.story}
       />
+
+      {/* Used to view an alert to users whenever a change happens to the stories in the database */}
+      <ToastContainer
+      position="bottom-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      />
+          
 
     </div>
   );
