@@ -66,3 +66,42 @@ exports.watchStories = functions.database.ref("/stories/{story}")
         console.log("Sent!");
       });
     });
+
+    exports.createStories = functions.database.ref("/stories/{story}")
+    .onWrite((change, context) => {
+      const storyAfter = change.after.val();
+      const maillist = [];
+      let htmlContent = "";
+
+      if (!change.before.exists()) { // create
+        htmlContent = `<h1>The new story is displayed below:</h1>
+          <p> <b>Name: </b> ${storyAfter.name} </p>
+          <p> <b>Category: </b> ${storyAfter.category} </p>
+          <p> <b>Description: </b> ${storyAfter.description} </p>
+           <p> <b>Estimated Time: </b> ${storyAfter.estimated_time}</p>
+           <p> <b>Priority: </b> ${storyAfter.priority} </p>`;
+      } else if (!change.before.exists()) { // update/delete
+        return;
+      }
+
+      
+        /*for (const [key, value] of Object.entries(storyAfter.user)) {
+          console.log(`${key}: ${value}`);
+          maillist.push(value);
+        }*/
+
+      const mailOptions = {
+        from: "ollie.project.307@gmail.com",
+        to: "ollie.project.307@gmail.com",
+        subject: "New Story Created",
+        html: htmlContent,
+      };
+
+      return transporter.sendMail(mailOptions, (error, data) => {
+        if (error) {
+          console.log(error);
+          return;
+        }
+        console.log("Sent!");
+      });
+    });
