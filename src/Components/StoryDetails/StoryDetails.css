@@ -30,18 +30,35 @@
 .story-first-row {
     display: -webkit-flex;
     display: flex;
+    justify-content: space-between;
 }
 
 .story-title {
     margin-left: 0;
 }
 
-.fav-btn {
+.story-btns {
+    display: -webkit-flex;
+    display: flex;
+}
+
+.wtch-btn {
     background-color: DodgerBlue;
-    border: none;
+    border: 1px solid;
     color: white;
     font-size: 20px;
-    margin-right: 0;
+    /* margin-right: 0; */
+    cursor: pointer;
+}
+
+/* .wtch-icon {} */
+
+.fav-btn {
+    background-color: DodgerBlue;
+    border: 1px solid;
+    color: white;
+    font-size: 20px;
+    /* margin-right: 0; */
     cursor: pointer;
 }
 
@@ -54,11 +71,20 @@
     color: yellow;
 }
 
+.wtch-btn-yellow {
+    background-color: DodgerBlue;
+    border: none;
+    font-size: 20px;
+    margin-right: 0;
+    cursor: pointer;
+    color: yellow;
+}
+
 .star-icon {
     margin: auto;
 }
 
-.star-icon {
+.wtch-icon {
     margin: auto;
 }
 

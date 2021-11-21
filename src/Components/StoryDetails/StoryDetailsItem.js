@@ -1,12 +1,35 @@
 import React from "react";
-import { FaStar, FaRegEye} from "react-icons/fa";
+import { getAuth } from "firebase/auth";
+import { FaStar, FaRegEye } from "react-icons/fa";
+
+const auth = getAuth();
+const user = auth.currentUser;
 
 
 var currUserObj = { favStories: [] }; //replace with actual currUserObj which include favStories attribute
 
+
 export { currUserObj }; //for testing
 
 function StoryDetailsItem(props) {
+    var currentStory = props.story;
+    currentStory.watch_list = ["test@test.com"];
+
+
+    const handleWatchingStory = (event) => {
+        event.preventDefault();
+
+        if (currentStory.watch_list.find(element => element === "test@test.com") !== undefined) {
+            currentStory.watch_list = currentStory.watch_list.filter(item => item !== "test@test.com"/*user.email*/);
+            event.target.style.color = "white";
+            console.log("remove: ", currentStory.watch_list);
+        }
+        else {
+            currentStory.watch_list.push("test@test.com"/*user.email*/);
+            event.target.style.color = "yellow";
+            console.log("add: ", currentStory.watch_list)
+        }
+    };
 
     const handleFavoritingStory = (event) => {
         event.preventDefault();
@@ -23,8 +46,9 @@ function StoryDetailsItem(props) {
     };
 
     var starbtn;
-    var watchbtn = <button className="wtch-btn"><FaRegEye className="wtch-icon" /></button>;
+    var watchbtn;
 
+    //handle when stories are already favorited/watched
     if (currUserObj.favStories.includes(props.story)) {
         starbtn = <button className="fav-btn-yellow" onClick={handleFavoritingStory}><FaStar className="star-icon" /></button>;
     }
@@ -32,13 +56,23 @@ function StoryDetailsItem(props) {
         starbtn = <button className="fav-btn" onClick={handleFavoritingStory}><FaStar className="star-icon" /></button>;
     }
 
+    //TODO: do the same as above for watch story
+    if (currentStory.watch_list.find(element => element === "test@test.com")) {
+        watchbtn = <button className="wtch-btn-yellow" onClick={handleWatchingStory}><FaRegEye className="wtch-icon" /></button>;
+    }
+    else {
+        watchbtn = <button className="wtch-btn" onClick={handleWatchingStory}><FaRegEye className="wtch-icon" /></button>;   
+    }
+
 
     return (
         <div className="story-item">
             <div className="story-first-row">
                 <h6 className="story-title">Title: {props.title}</h6>
-                {watchbtn}
-                {starbtn}
+                <div className="story-btns">
+                    {watchbtn}
+                    {starbtn}
+                </div>
             </div>
             <h6 className="story-time">Time: {props.time}</h6>
             <p className="story-description">Description: {props.description}</p>
