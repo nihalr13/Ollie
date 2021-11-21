@@ -1,5 +1,6 @@
 import React from "react";
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaRegEye} from "react-icons/fa";
+
 
 var currUserObj = { favStories: [] }; //replace with actual currUserObj which include favStories attribute
 
@@ -22,6 +23,7 @@ function StoryDetailsItem(props) {
     };
 
     var starbtn;
+    var watchbtn = <button className="wtch-btn"><FaRegEye className="wtch-icon" /></button>;
 
     if (currUserObj.favStories.includes(props.story)) {
         starbtn = <button className="fav-btn-yellow" onClick={handleFavoritingStory}><FaStar className="star-icon" /></button>;
@@ -35,6 +37,7 @@ function StoryDetailsItem(props) {
         <div className="story-item">
             <div className="story-first-row">
                 <h6 className="story-title">Title: {props.title}</h6>
+                {watchbtn}
                 {starbtn}
             </div>
             <h6 className="story-time">Time: {props.time}</h6>
