@@ -200,6 +200,12 @@ function Board() {
 </form>*/
 
 function MyVerticallyCenteredModal(props) {
+  /*
+  if (props.story != null) {
+    var parentComments = story.comments;
+  }  
+
+  */
   var children = {text: "we are children", children: []}
   var parentComments = [{
     text: "this is good",
@@ -222,15 +228,23 @@ function MyVerticallyCenteredModal(props) {
   const handleCommentSubmit = (event) => {
     setComments([...comments, {text: newComment, children: []}])
     event.preventDefault();
+
+    /*
+    const updates = {};
+      updates['/stories/' + props.story.comments] = parentComments;
+      update(ref(db), updates);
+    */
   }
   
   // const currStory = {
-  //   title: props.story.title,
-  //   description: props.story.description,
-  //   time: props.story.time,
-  //   priority: props.story.priority,
-  //   category: props.story.category,
-  //   date: props.story.date_created
+  //   if (props.story != null) {
+  //     title: props.story.title,
+  //     description: props.story.description,
+  //     time: props.story.time,
+  //     priority: props.story.priority,
+  //     category: props.story.category,
+  //     date: props.story.date_created
+  //   }
   // }
 
 //   const initialState = {
@@ -390,11 +404,15 @@ function MyVerticallyCenteredModal(props) {
           <input type="submit"/>
         </form>
 
-
+        {/*
+        
+        
+        */}
 
         {comments.map((comment) => {
           return <Comment comment={comment} />
         })}
+
 
       </Modal.Body>
       <Modal.Footer>
