@@ -14,7 +14,8 @@ function CreateStory() {
         category: "backlog",
         priority: "low",
         timeEstimate: 0,
-        date_created: ""
+        date_created: "",
+        comments: ["First comment!"]
     })
 
     const handleChange = e => {
@@ -103,7 +104,8 @@ function CreateStory() {
                         estimated_time:state.timeEstimate,
                         category:state.category,
                         priority:state.priority,
-                        date_created:dateVal
+                        date_created:dateVal,
+                        comments:state.comments
                     }
                     const updates = {};
                     updates['/stories/' + state.storyName] = story;
