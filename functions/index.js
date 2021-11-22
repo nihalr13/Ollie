@@ -67,10 +67,9 @@ exports.watchStories = functions.database.ref("/stories/{story}")
       });
     });
 
-    exports.createStories = functions.database.ref("/stories/{story}")
+exports.createStories = functions.database.ref("/stories/{story}")
     .onWrite((change, context) => {
       const storyAfter = change.after.val();
-      const maillist = [];
       let htmlContent = "";
 
       if (!change.before.exists()) { // create
@@ -80,12 +79,12 @@ exports.watchStories = functions.database.ref("/stories/{story}")
           <p> <b>Description: </b> ${storyAfter.description} </p>
            <p> <b>Estimated Time: </b> ${storyAfter.estimated_time}</p>
            <p> <b>Priority: </b> ${storyAfter.priority} </p>`;
-      } else if (!change.before.exists()) { // update/delete
+      } else if (change.before.exists()) { // update/delete
         return;
       }
 
-      
-        /*for (const [key, value] of Object.entries(storyAfter.user)) {
+
+      /* for (const [key, value] of Object.entries(storyAfter.user)) {
           console.log(`${key}: ${value}`);
           maillist.push(value);
         }*/
