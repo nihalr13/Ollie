@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {Link } from "react-router-dom";
 export default class Login extends Component {
   constructor(props) {
     super(props);
@@ -43,6 +44,7 @@ export default class Login extends Component {
 
   render() {
     return (
+      <div>
       <form onSubmit={this.handleSubmit}>
         <h3>Sign In</h3>
 
@@ -68,6 +70,10 @@ export default class Login extends Component {
           Forgot <a href="#">password?</a>
         </p>
       </form>
+      <Link to="/signup">
+      <button>Don't have an account? Sign up</button> 
+      </Link>
+      </div>
     );
   }
 }

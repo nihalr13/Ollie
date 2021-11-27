@@ -204,7 +204,6 @@ function MyVerticallyCenteredModal(props) {
   if (props.story != null) {
     var parentComments = story.comments;
   }  
-
   */
   var children = {text: "we are children", children: []}
   var parentComments = [{

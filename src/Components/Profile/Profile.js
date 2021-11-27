@@ -4,8 +4,23 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { useState } from 'react';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import Sidebar from '../Sidebar/Sidebar'
+import {Link } from "react-router-dom";
+
+function signout() {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  if (user !== null) {
+    signOut(auth).then(() => {
+      alert("Signed out successfully.");
+    }).catch((error) => {
+      alert(error);
+    });
+  } else {
+    alert("No account is currently signed in.");
+  }
+}
 
 const auth = getAuth();
 const user = auth.currentUser;
@@ -171,6 +186,11 @@ const Profile = () => {
                     {button}
                 </div>
                 
+            </div>
+            <div>
+                <Link to="/login">
+                <button onClick={signout}>Sign-out</button> 
+                </Link>
             </div>
         </div>
             
