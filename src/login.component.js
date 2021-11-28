@@ -50,13 +50,12 @@ export default class Login extends Component {
     signInWithPopup(auth, provider)
       .then((result) => {
         // This gives you a GitHub Access Token. You can use it to access the GitHub API.
-        this.props.history.push("/Board");
         const credential = GithubAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
-        alert(token);
-        
         // The signed-in user info.
         const user = result.user;
+        this.props.history.push("/Board");
+
         // ...
       }).catch((error) => {
         // Handle Errors here.
