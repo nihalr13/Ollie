@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signInWithPopup, GithubAuthProvider  } from "firebase/auth";
+const provider = new GithubAuthProvider();
 export default class Login extends Component {
   constructor(props) {
     super(props);
@@ -39,10 +40,37 @@ export default class Login extends Component {
         // ..
       });
     event.preventDefault();
+    
+  }
+
+  github(event) {
+    const auth = getAuth();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+        this.props.history.push("/Board");
+        const credential = GithubAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        alert(token);
+        
+        // The signed-in user info.
+        const user = result.user;
+        // ...
+      }).catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.email;
+        // The AuthCredential type that was used.
+        const credential = GithubAuthProvider.credentialFromError(error);
+        // ...
+      });
   }
 
   render() {
     return (
+      <div>
       <form onSubmit={this.handleSubmit}>
         <h3>Sign In</h3>
 
@@ -68,6 +96,10 @@ export default class Login extends Component {
           Forgot <a href="#">password?</a>
         </p>
       </form>
+      <form onSubmit={this.github, this.handleSubmit}>
+        <button type="submit" className="btn btn-primary btn-block">Sign-in with GitHub</button>
+      </form>
+      </div>
     );
   }
 }
