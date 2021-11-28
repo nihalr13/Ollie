@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, GithubAuthProvider  } from "firebase/auth";
+import {Link } from "react-router-dom";
+
 const provider = new GithubAuthProvider();
 export default class Login extends Component {
   constructor(props) {
@@ -96,9 +98,12 @@ export default class Login extends Component {
           Forgot <a href="#">password?</a>
         </p>
       </form>
-      <form onSubmit={this.github, this.handleSubmit}>
+      <form onSubmit={this.github}>
         <button type="submit" className="btn btn-primary btn-block">Sign-in with GitHub</button>
       </form>
+      <Link to="/signup">
+      <button>Don't have an account? Sign up</button> 
+      </Link>
       </div>
     );
   }

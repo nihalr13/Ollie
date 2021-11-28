@@ -200,6 +200,11 @@ function Board() {
 </form>*/
 
 function MyVerticallyCenteredModal(props) {
+  /*
+  if (props.story != null) {
+    var parentComments = story.comments;
+  }  
+  */
   var children = {text: "we are children", children: []}
   var parentComments = [{
     text: "this is good",
@@ -222,83 +227,118 @@ function MyVerticallyCenteredModal(props) {
   const handleCommentSubmit = (event) => {
     setComments([...comments, {text: newComment, children: []}])
     event.preventDefault();
+
+    /*
+    const updates = {};
+      updates['/stories/' + props.story.comments] = parentComments;
+      update(ref(db), updates);
+    */
   }
   
+  // const currStory = {
+  //   if (props.story != null) {
+  //     title: props.story.title,
+  //     description: props.story.description,
+  //     time: props.story.time,
+  //     priority: props.story.priority,
+  //     category: props.story.category,
+  //     date: props.story.date_created
+  //   }
+  // }
+
 //   const initialState = {
 //     isEdit: false,
-//     name: currUser.name,
-//     email: currUser.email,
-//     github: currUser.github
-// }
+//     title: currStory.title,
+//     description = currStory.description,
+//     time = currStory.time,
+//     priority = currStory.priority,
+//     category = currStory.category,
+//     date = currStory.date    
+//   }
 
 
 // const [state, setState] = useState(initialState)
 
-
-
 // const handleEdit = () => {
 //     setState({
-//         isEdit: true,
-//         name: state.name,
-//         email: state.email,
-//         github: state.github
+//     isEdit: true,
+//     title: state.title,
+//     description = state.description,
+//     time = state.time,
+//     priority = state.priority,
+//     category = state.category,
+//     date = state.date    
 //     })
 // }
 
 // const handleSave = (event) => {
-//     currUser.name = state.name;
-//     currUser.email = state.email;
-//     currUser.github = state.github;
+//     currStory.title = state.title;
+//     currStory.description = state.description;
+//     currStory.time = state.time;
+//     currStory.priority = state.priority;
+//     currStory.category = state.category;
+//     currStory.date = state.date;
 
 //     setState({
-//         isEdit: false,
-//         name: state.name,
-//         email: state.email,
-//         github: state.github
+//        isEdit: false,
+//     title: state.title,
+//     description = state.description,
+//     time = state.time,
+//     priority = state.priority,
+//     category = state.category,
+//     date = state.date    
 //     })
 // }
 
-// const handleChangeName = (event) => {
-//     setState({
-//         isEdit: state.isEdit,
-//         name: event.target.value,
-//         email: state.email,
-//         github: state.github
-//     })
-// }
-
-// const handleChangeEmail = (event) => {
+// const handleChangeTitle = (event) => {
 //     setState({
 //         isEdit: state.isEdit,
-//         name: state.name,
-//         email: event.target.value,
-//         github: state.github
+//     title: event.target.value,
+//     description = state.description,
+//     time = state.time,
+//     priority = state.priority,
+//     category = state.category,
+//     date = state.date    
 //     })
 // }
 
-// const handleChangeGithub = (event) => {
+// const handleChangeDescription = (event) => {
 //     setState({
 //         isEdit: state.isEdit,
-//         name: state.name,
-//         email: state.email,
-//         github: event.target.value
+//     title: state.title,
+//     description = event.target.value,
+//     time = state.time,
+//     priority = state.priority,
+//     category = state.category,
+//     date = state.date    
 //     })
 // }
 
-     // {/* if (state.isEdit) {
-      //   fullNameComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeName} value={state.name}></input></Col>;
-      //   EmailComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeEmail} value={state.email}></input></Col>;
-      //   GitComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeGithub} value={state.github}></input></Col>;;
-      //   ProjectsComp = <Col md="auto" lg="auto">{currUser.projects}</Col>;
-      //   button = <button id="edit-btn" onClick={handleSave}>Save Changes</button>;
-      // }
-      // else {
-      //   fullNameComp = <Col md="auto" lg="auto">{currUser.name}</Col>;
-      //   EmailComp = <Col md="auto" lg="auto">{currUser.email}</Col>;
-      //   GitComp = <Col md="auto" lg="auto">{currUser.github}</Col>;
-      //   ProjectsComp = <Col md="auto" lg="auto">{currUser.projects}</Col>;
-      //   button = <button id="edit-btn" onClick={handleEdit}>Edit Profile</button>;
-      // } */
+// const handleChangePriority = (event) => {
+//     setState({
+//         isEdit: state.isEdit,
+//     title: state.title,
+//     description = event.target.value,
+//     time = state.time,
+//     priority = state.priority,
+//     category = state.category,
+//     date = state.date    
+//     })
+// }
+
+// if (state.isEdit) {
+//  fullNameComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeName} value={state.name}></input></Col>;
+//  EmailComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeEmail} value={state.email}></input></Col>;
+//  GitComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeGithub} value={state.github}></input></Col>;;
+//   ProjectsComp = <Col md="auto" lg="auto">{currUser.projects}</Col>;
+//   button = <button id="edit-btn" onClick={handleSave}>Save Changes</button>;
+// }
+// else {
+//   fullNameComp = <Col md="auto" lg="auto">{currUser.name}</Col>;
+//   EmailComp = <Col md="auto" lg="auto">{currUser.email}</Col>;
+//   ProjectsComp = <Col md="auto" lg="auto">{currUser.projects}</Col>;
+//   button = <button id="edit-btn" onClick={handleEdit}>Edit Profile</button>;
+// }
   
   var title;
   var description;
@@ -363,11 +403,15 @@ function MyVerticallyCenteredModal(props) {
           <input type="submit"/>
         </form>
 
-
+        {/*
+        
+        
+        */}
 
         {comments.map((comment) => {
           return <Comment comment={comment} />
         })}
+
 
       </Modal.Body>
       <Modal.Footer>

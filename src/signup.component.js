@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from 'firebase/app';
+import {Link } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAnXtdpxXg1eYEyGJ3xLKF0C2VnYqTQLNc",
@@ -58,6 +59,7 @@ export default class Signup extends Component {
 
   render() {
     return (
+      <div>
       <form onSubmit={this.handleSubmit}>
         <h3>Sign Up</h3>
 
@@ -83,6 +85,12 @@ export default class Signup extends Component {
           Forgot <a href="#">password?</a>
         </p>
       </form>
+      <br></br>
+      <br></br>
+      <Link to="/login">
+      <button>Already have an account? Log in</button> 
+      </Link>
+      </div>
     );
   }
 }

@@ -29,7 +29,6 @@ function App() {
         <Link to="/login"><button>
           Login
           </button>
-          <button onClick={signout}>Sign-out</button> 
           </Link>
         <Link to="/signup"><button>
           Sign-up
