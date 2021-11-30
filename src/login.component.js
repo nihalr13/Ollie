@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, GithubAuthProvider  } from "firebase/auth";
-import {Link } from "react-router-dom";
+import {Link, useHistory } from "react-router-dom";
 
 const provider = new GithubAuthProvider();
+
 export default class Login extends Component {
   constructor(props) {
     super(props);
@@ -52,8 +53,18 @@ export default class Login extends Component {
         // This gives you a GitHub Access Token. You can use it to access the GitHub API.
         const credential = GithubAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
+        const request = new XMLHttpRequest();
+        //Enter username after users/ to see list of repos
+        const url = "https://api.github.com/users/username/repos";
+        request.open("GET", url, true);
+        request.onload = function() {
+          alert(this.response);
+        }
+        request.send();
         // The signed-in user info.
         const user = result.user;
+        //const history = useHistory();
+        //history.push("/Board");
         this.props.history.push("/Board");
 
         // ...
