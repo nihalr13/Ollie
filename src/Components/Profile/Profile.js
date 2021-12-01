@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import Sidebar from '../Sidebar/Sidebar'
 import {Link } from "react-router-dom";
+import poll from './github.js';
 
 function signout() {
   const auth = getAuth();
@@ -44,11 +45,12 @@ if (user !== null) {
 
 const currUser = {
     name: "Qusai",
-    email: "Qusai@gmail.com",
-    github: "https://github.com",
-    projects: ["One", "Two", "Three", "Four"],
+    email: "Ollie",
+    repoOwner: "QAGatPurdue",
+    repoName: "Qusai@gmail.com",
     profileImg: "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2016%2F11%2Frock-insta.jpg"
 }
+
 
 
 const Profile = () => {
@@ -57,7 +59,7 @@ const Profile = () => {
         isEdit: false,
         name: currUser.name,
         email: currUser.email,
-        github: currUser.github
+        repoOwner: currUser.repoOwner
     }
 
 
@@ -70,21 +72,23 @@ const Profile = () => {
             isEdit: true,
             name: state.name,
             email: state.email,
-            github: state.github
+            repoOwner: state.repoOwner
         })
     }
 
     const handleSave = (event) => {
         currUser.name = state.name;
         currUser.email = state.email;
-        currUser.github = state.github;
+        currUser.repoOwner = state.repoOwner;
 
         setState({
             isEdit: false,
             name: state.name,
             email: state.email,
-            github: state.github
+            repoOwner: state.repoOwner
         })
+        poll(currUser.repoOwner, currUser.email);
+        
     }
 
     const handleChangeName = (event) => {
@@ -92,7 +96,7 @@ const Profile = () => {
             isEdit: state.isEdit,
             name: event.target.value,
             email: state.email,
-            github: state.github
+            repoOwner: state.repoOwner
         })
     }
 
@@ -101,37 +105,37 @@ const Profile = () => {
             isEdit: state.isEdit,
             name: state.name,
             email: event.target.value,
-            github: state.github
+            repoOwner: state.repoOwner
         })
     }
 
-    const handleChangeGithub = (event) => {
+    const handleChangerepoOwner = (event) => {
         setState({
             isEdit: state.isEdit,
             name: state.name,
             email: state.email,
-            github: event.target.value
+            repoOwner: event.target.value
         })
     }
 
     var fullNameComp;
     var EmailComp;
     var GitComp;
-    var ProjectsComp;
+    var repoNameComp;
     var button;
 
     if (state.isEdit) {
         fullNameComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeName} value={state.name}></input></Col>;
         EmailComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeEmail} value={state.email}></input></Col>;
-        GitComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeGithub} value={state.github}></input></Col>;;
-        ProjectsComp = <Col md="auto" lg="auto">{currUser.projects}</Col>;
+        GitComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangerepoOwner} value={state.repoOwner}></input></Col>;;
+        repoNameComp = <Col md="auto" lg="auto">{currUser.repoName}</Col>;
         button = <button id="edit-btn" onClick={handleSave}>Save Changes</button>;
     }
     else {
         fullNameComp = <Col md="auto" lg="auto">{currUser.name}</Col>;
         EmailComp = <Col md="auto" lg="auto">{currUser.email}</Col>;
-        GitComp = <Col md="auto" lg="auto">{currUser.github}</Col>;
-        ProjectsComp = <Col md="auto" lg="auto">{currUser.projects}</Col>;
+        GitComp = <Col md="auto" lg="auto">{currUser.repoOwner}</Col>;
+        repoNameComp = <Col md="auto" lg="auto">{currUser.repoName}</Col>;
         button = <button id="edit-btn" onClick={handleEdit}>Edit Profile</button>;
     }
 
@@ -154,7 +158,7 @@ const Profile = () => {
                     <div>
                         <Container>  
                             <Row className="center">
-                                <Col>Full Name: </Col>
+                                <Col>Display Name: </Col>
                                 {fullNameComp}
                             </Row>
                         </Container>
@@ -162,7 +166,7 @@ const Profile = () => {
                     <div>
                         <Container>  
                             <Row className="center">
-                                <Col>Email: </Col>
+                                <Col>Repository Name: </Col>
                                 {EmailComp}
                             </Row>
                         </Container>
@@ -170,7 +174,7 @@ const Profile = () => {
                     <div>
                         <Container>  
                             <Row className="center">
-                                <Col>GitHub: </Col>
+                                <Col>Repository Owner: </Col>
                                 {GitComp}
                             </Row>
                         </Container>
@@ -178,8 +182,8 @@ const Profile = () => {
                     <div>
                         <Container>  
                             <Row className="center">
-                                <Col>Projects: </Col>
-                                {ProjectsComp}
+                                <Col>Email: </Col>
+                                {repoNameComp}
                             </Row>
                         </Container>
                     </div>

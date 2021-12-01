@@ -48,17 +48,19 @@ export default class Login extends Component {
     
   }
 
+  
   github(event) {
     const auth = getAuth();
     signInWithPopup(auth, provider)
       .then((result) => {
         // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+        const { Octokit } = require("@octokit/core");
         const credential = GithubAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
-        const octokit = new Octokit({ auth: token });
-        octokit.request('GET /user').then(response => {
-          const user = response.data.name;
-        });
+        alert(token);
+        //console.log("yooo", user.repoOwner, user.repoName);
+
+        
         // ...
       }).catch((error) => {
         // Handle Errors here.
@@ -68,6 +70,7 @@ export default class Login extends Component {
         const email = error.email;
         // The AuthCredential type that was used.
         const credential = GithubAuthProvider.credentialFromError(error);
+        console.log(errorCode, errorMessage, credential);
         // ...
       });
   }
