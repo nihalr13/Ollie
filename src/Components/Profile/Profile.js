@@ -41,8 +41,6 @@ if (user !== null) {
   console.log("user is null");
 }
 
-//sidebar component from https://reactjsexample.com/minimal-side-navigation-component-for-react/
-
 const currUser = {
     name: "Qusai",
     email: "Ollie",
@@ -50,8 +48,6 @@ const currUser = {
     repoName: "Qusai@gmail.com",
     profileImg: "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2016%2F11%2Frock-insta.jpg"
 }
-
-
 
 const Profile = () => {
 
@@ -62,10 +58,7 @@ const Profile = () => {
         repoOwner: currUser.repoOwner
     }
 
-
     const [state, setState] = useState(initialState)
-
-
 
     const handleEdit = () => {
         setState({
@@ -197,10 +190,6 @@ const Profile = () => {
                 </Link>
             </div>
         </div>
-            
-            
-
-
 
     );
 }

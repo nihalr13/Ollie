@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getDatabase, ref, onValue, update } from "firebase/database";
+import { getDatabase, ref, onValue, update, push, set } from "firebase/database";
 import Sidebar from '../Sidebar/Sidebar'
 
 // Custom Components and CSS
@@ -14,6 +14,9 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 //Code to find date and time is from freeCodeCamp tutorial
 const timeElapsed = Date.now();
@@ -38,6 +41,8 @@ function Board() {
       var childCategories = [];
       var childPriorities = [];
       var childDates = [];
+      var childCommentLists = [];
+
       snapshot.forEach((childSnapshot) => {
         const childName = childSnapshot.val().name;
         const childDesc = childSnapshot.val().description;
@@ -45,12 +50,14 @@ function Board() {
         const childCategory = childSnapshot.val().category;
         const childPriority = childSnapshot.val().priority;
         const childDate = childSnapshot.val().date_created;
+        const childComments = childSnapshot.val().comments;
         childNames.push(childName);
         childDescriptions.push(childDesc);
         childTimes.push(childTime);
         childCategories.push(childCategory);
         childPriorities.push(childPriority);
         childDates.push(childDate);
+        childCommentLists.push(childComments);
       });
       const assigner_ = "Qusai";
       const assignee_ = "Bob";
@@ -58,7 +65,7 @@ function Board() {
 
       //Store stories as objects based on 
       for (var i = 0; i < childNames.length; i++) {
-        fetchedStories.push(new Story(childNames[i], childDescriptions[i], childTimes[i], assigner_, assignee_, childPriorities[i], childCategories[i], childDates[i]));
+        fetchedStories.push(new Story(childNames[i], childDescriptions[i], childTimes[i], assigner_, assignee_, childPriorities[i], childCategories[i], childDates[i], childCommentLists[i]));
       }
 
       setStories(fetchedStories);
@@ -77,9 +84,7 @@ function Board() {
       else {
         firstFetch = false;
       }
-      
     });
-
   }, []);
 
   //#endregion
@@ -180,8 +185,6 @@ function Board() {
       draggable
       pauseOnHover
       />
-          
-
     </div>
   );
 }
@@ -199,147 +202,33 @@ function Board() {
   <input type="submit" name="submit" value="Submit"></input>
 </form>*/
 
-function MyVerticallyCenteredModal(props) {
-  /*
-  if (props.story != null) {
-    var parentComments = story.comments;
-  }  
-  */
-  var children = {text: "we are children", children: []}
-  var parentComments = [{
-    text: "this is good",
-    children: []
-  }, {
-    text: "this is great",
-    children: [{ text: "this is great 2", children: [] }, { text: "this is great 3", children: [] }]
-  }, {
-    text: "This is the best!",
-    children: [{ text: "This is the best! 2", children: [children] }, { text: "This is the best! 3", children: [children, children] }]
-  }];
-  
+function MyVerticallyCenteredModal(props) { 
+  var commentList = [];
   const [newComment, setNewComment] = useState('');
-  const [comments, setComments] = useState(parentComments);
+
+  if (props.story != null && props.story != undefined) {
+    commentList = props.story.comments;
+    console.log(commentList);   
+  }
+  const [comments, setComments] = useState(commentList);
+  console.log(comments);
+  console.log(props.story);
 
   const handleCommentChange = (event) => {
     setNewComment(event.target.value);
   }
 
   const handleCommentSubmit = (event) => {
-    setComments([...comments, {text: newComment, children: []}])
+    setComments([...comments, {text: newComment}])
     event.preventDefault();
 
-    /*
-    const updates = {};
-      updates['/stories/' + props.story.comments] = parentComments;
-      update(ref(db), updates);
-    */
+    const commentListRef = ref(db, '/stories/' + props.story.title + '/comments');
+    const newCommentRef = push(commentListRef);
+    set(newCommentRef, {
+      newComment
+    });
   }
-  
-  // const currStory = {
-  //   if (props.story != null) {
-  //     title: props.story.title,
-  //     description: props.story.description,
-  //     time: props.story.time,
-  //     priority: props.story.priority,
-  //     category: props.story.category,
-  //     date: props.story.date_created
-  //   }
-  // }
 
-//   const initialState = {
-//     isEdit: false,
-//     title: currStory.title,
-//     description = currStory.description,
-//     time = currStory.time,
-//     priority = currStory.priority,
-//     category = currStory.category,
-//     date = currStory.date    
-//   }
-
-
-// const [state, setState] = useState(initialState)
-
-// const handleEdit = () => {
-//     setState({
-//     isEdit: true,
-//     title: state.title,
-//     description = state.description,
-//     time = state.time,
-//     priority = state.priority,
-//     category = state.category,
-//     date = state.date    
-//     })
-// }
-
-// const handleSave = (event) => {
-//     currStory.title = state.title;
-//     currStory.description = state.description;
-//     currStory.time = state.time;
-//     currStory.priority = state.priority;
-//     currStory.category = state.category;
-//     currStory.date = state.date;
-
-//     setState({
-//        isEdit: false,
-//     title: state.title,
-//     description = state.description,
-//     time = state.time,
-//     priority = state.priority,
-//     category = state.category,
-//     date = state.date    
-//     })
-// }
-
-// const handleChangeTitle = (event) => {
-//     setState({
-//         isEdit: state.isEdit,
-//     title: event.target.value,
-//     description = state.description,
-//     time = state.time,
-//     priority = state.priority,
-//     category = state.category,
-//     date = state.date    
-//     })
-// }
-
-// const handleChangeDescription = (event) => {
-//     setState({
-//         isEdit: state.isEdit,
-//     title: state.title,
-//     description = event.target.value,
-//     time = state.time,
-//     priority = state.priority,
-//     category = state.category,
-//     date = state.date    
-//     })
-// }
-
-// const handleChangePriority = (event) => {
-//     setState({
-//         isEdit: state.isEdit,
-//     title: state.title,
-//     description = event.target.value,
-//     time = state.time,
-//     priority = state.priority,
-//     category = state.category,
-//     date = state.date    
-//     })
-// }
-
-// if (state.isEdit) {
-//  fullNameComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeName} value={state.name}></input></Col>;
-//  EmailComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeEmail} value={state.email}></input></Col>;
-//  GitComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChangeGithub} value={state.github}></input></Col>;;
-//   ProjectsComp = <Col md="auto" lg="auto">{currUser.projects}</Col>;
-//   button = <button id="edit-btn" onClick={handleSave}>Save Changes</button>;
-// }
-// else {
-//   fullNameComp = <Col md="auto" lg="auto">{currUser.name}</Col>;
-//   EmailComp = <Col md="auto" lg="auto">{currUser.email}</Col>;
-//   ProjectsComp = <Col md="auto" lg="auto">{currUser.projects}</Col>;
-//   button = <button id="edit-btn" onClick={handleEdit}>Edit Profile</button>;
-// }
-  
   var title;
   var description;
   var time;
@@ -354,6 +243,7 @@ function MyVerticallyCenteredModal(props) {
     category = props.story.category;
     date = props.story.date_created;
   }
+
   var priorityColor = "";
   if (priority == "high") {
     priorityColor = "red";
@@ -364,6 +254,68 @@ function MyVerticallyCenteredModal(props) {
   if (priority == "low") {
     priorityColor = "green";
   }
+
+  const initialState = {
+    isEdit: false,
+    title: title, 
+    time: time, 
+    priority: priority,
+    description: description
+  }
+  const[state, setState] = useState(initialState)
+
+  const handleEdit = () => {
+      setState({
+        isEdit: true,
+      })
+  }
+
+  const handleSave = (event) => {
+      // const story = {
+      //   name:props.title,
+      //   description:state.storyDesc,
+      //   estimated_time:state.timeEstimate,
+      //   category:state.category,
+      //   priority:state.priority,
+      //   date_created:dateVal,
+      //   comments:state.comments
+      // }
+      // const updates = {};
+      // updates['/stories/' + state.storyName] = story;
+      // update(ref(db), updates);
+      setState({
+        isEdit: false,
+      })
+  }
+
+  const handleChange = e => {
+    setState({
+        ...state,
+        [e.target.name]: e.target.value,
+    })
+}
+
+  var titleComp;
+  var timeComp;
+  var priorityComp;
+  var descriptionComp;
+  var button;
+
+  if (state.isEdit) {
+    titleComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChange} value={title}></input></Col>;
+    timeComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChange} value={time}></input></Col>;
+    priorityComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChange} value={priority}></input></Col>;
+    descriptionComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChange} value={description}></input></Col>;
+    button = <button id="edit-btn" onClick={handleSave}>Save Changes</button>;
+  }
+  else {
+    titleComp = <Col md="auto" lg="auto">{title}</Col>;
+    timeComp = <Col md="auto" lg="auto">{time}</Col>;
+    priorityComp = <Col md="auto" lg="auto">{priority}</Col>;
+    descriptionComp = <Col md="auto" lg="auto">{description}</Col>;
+    button = <button id="edit-btn" onClick={handleEdit}>Edit Story</button>;
+  }
+
   return (
     <Modal
       {...props}
@@ -377,24 +329,28 @@ function MyVerticallyCenteredModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>Story Name: {title}</h4>
         <p>
-          Time Estimate: {time} hrs
+          <h4>Story Title: {titleComp}</h4>
+        </p> 
+        <p>
+          <b>Time Estimate:</b> {timeComp}
         </p>
         <p>
-          Priority of this story: <font color={priorityColor}>{priority}</font>
+          <b>Priority of this story:</b> <font color={priorityColor}>{priorityComp}</font>
         </p>
         <p>
-          Date Created: {date}
+          <b>Date Created:</b>
         </p>
-        <h4>Brief Story Description: </h4>
         <p>
-          {description}
+          {date}
         </p>
-
+        <b>Brief Story Description:</b>
+        <p>
+          {descriptionComp}
+        </p>
+        {button}
 
         <hr id="comments-section-line"></hr>
-
         {/* Add section for adding comments */}
         <h5>Comments</h5>
 
@@ -402,11 +358,6 @@ function MyVerticallyCenteredModal(props) {
           Enter new comment <input type="text" onChange={handleCommentChange}/>
           <input type="submit"/>
         </form>
-
-        {/*
-        
-        
-        */}
 
         {comments.map((comment) => {
           return <Comment comment={comment} />
