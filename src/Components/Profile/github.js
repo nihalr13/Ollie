@@ -1,4 +1,4 @@
-//import { oldCommit } from "./Profile";
+import { CreateCodeReviewStory } from "../../CreateStory";
 
 const { Octokit } = require("@octokit/core");
 require('dotenv').config();
@@ -16,6 +16,7 @@ const poll = (owner, repo) => {
       var newCommit = response.data[0].sha;
       if (newCommit.localeCompare(localStorage.oldCommit) != 0) {
         localStorage.oldCommit = newCommit;
+        CreateCodeReviewStory();
         //alert("hello");
       }
     }
