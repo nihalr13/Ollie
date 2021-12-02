@@ -20,7 +20,7 @@ export function CreateCodeReviewStory() {
         category:"backlog",
         priority:"Medium",
         date_created:dateVal,
-        comments:null
+        comments: ["First comment!"]
     }
     const updates = {};
     updates['/stories/' + story.name] = story;
