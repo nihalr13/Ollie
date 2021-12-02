@@ -18,6 +18,7 @@ export default class Login extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleChange2 = this.handleChange2.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.github = this.github.bind(this);
   }
 
   handleChange(event) {
@@ -34,7 +35,6 @@ export default class Login extends Component {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        alert("User successfully signed in");
         this.props.history.push("/Board");
         // ...
       })
@@ -54,12 +54,9 @@ export default class Login extends Component {
     signInWithPopup(auth, provider)
       .then((result) => {
         // This gives you a GitHub Access Token. You can use it to access the GitHub API.
-        const { Octokit } = require("@octokit/core");
         const credential = GithubAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
-        alert(token);
-        //console.log("yooo", user.repoOwner, user.repoName);
-
+        this.props.history.push("/Board");
         
         // ...
       }).catch((error) => {
