@@ -8,7 +8,7 @@ import Sidebar from './Components/Sidebar/Sidebar'
 const db = getDatabase(app);
 
 export function CreateCodeReviewStory() {
-    const history = useHistory()
+    //const history = useHistory();
     const timeElapsed = Date.now();
     const created = new Date(timeElapsed);
     var dateVal = created.getFullYear() + "-" + (created.getMonth() + 1) + "-" + created.getDate();
@@ -25,7 +25,7 @@ export function CreateCodeReviewStory() {
     const updates = {};
     updates['/stories/' + story.name] = story;
     update(ref(db), updates);
-    history.push("/Board");
+    //history.push("/Board");
 }
 
 function CreateStory() {
