@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import React, { Component } from "react";
 import Button from "./Button.js";
-import {Link } from "react-router-dom";
+import {BrowserRouter, Link } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 
 function signout() {

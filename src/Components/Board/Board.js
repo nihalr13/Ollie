@@ -162,12 +162,6 @@ function Board() {
         </Link>
       </div>
 
-      <MyVerticallyCenteredModal
-        show={modalState.show}
-        onHide={() => setModalState({ show: false, story: modalState.story })}
-        story={modalState.story}
-      />
-
       {/* Used to view an alert to users whenever a change happens to the stories in the database */}
       <ToastContainer
       position="bottom-right"
@@ -179,6 +173,13 @@ function Board() {
       pauseOnFocusLoss
       draggable
       pauseOnHover
+      />
+
+      
+      <MyVerticallyCenteredModal
+        show={modalState.show}
+        onHide={() => setModalState({ show: false, story: modalState.story })}
+        story={modalState.story}
       />
           
 
