@@ -7,6 +7,27 @@ import Sidebar from './Components/Sidebar/Sidebar'
 
 const db = getDatabase(app);
 
+export function CreateCodeReviewStory() {
+    //const history = useHistory();
+    const timeElapsed = Date.now();
+    const created = new Date(timeElapsed);
+    var dateVal = created.getFullYear() + "-" + (created.getMonth() + 1) + "-" + created.getDate();
+
+    const story = {
+        name:"Code Review For Commit " + localStorage.oldCommit,
+        description:"Commit " + localStorage.oldCommit,
+        estimated_time:3,
+        category:"backlog",
+        priority:"Medium",
+        date_created:dateVal,
+        comments:null
+    }
+    const updates = {};
+    updates['/stories/' + story.name] = story;
+    update(ref(db), updates);
+    //history.push("/Board");
+}
+
 function CreateStory() {
     const [state, setState] = useState({
         storyName: "",
