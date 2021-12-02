@@ -16,7 +16,7 @@ const poll = (owner, repo) => {
       var newCommit = response.data[0].sha;
       if (newCommit.localeCompare(localStorage.oldCommit) != 0) {
         localStorage.oldCommit = newCommit;
-        //test code review
+        //test code review category issue
         CreateCodeReviewStory();
         //alert("hello");
       }
