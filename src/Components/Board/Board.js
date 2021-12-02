@@ -340,8 +340,6 @@ function MyVerticallyCenteredModal(props) {
         </p>
         <p>
           <b>Date Created:</b>
-        </p>
-        <p>
           {date}
         </p>
         <b>Brief Story Description:</b>
