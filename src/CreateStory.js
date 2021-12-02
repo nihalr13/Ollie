@@ -17,7 +17,7 @@ export function CreateCodeReviewStory() {
         name:"Code Review For Commit " + localStorage.oldCommit,
         description:"Commit " + localStorage.oldCommit,
         estimated_time:3,
-        category:"Backlog",
+        category:"backlog",
         priority:"Medium",
         date_created:dateVal,
         comments:null
