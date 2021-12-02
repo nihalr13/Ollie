@@ -9,6 +9,8 @@ import Sidebar from '../Sidebar/Sidebar'
 import {Link } from "react-router-dom";
 import poll from './github.js';
 
+localStorage.oldCommit = "0";
+
 function signout() {
   const auth = getAuth();
   const user = auth.currentUser;
@@ -205,6 +207,7 @@ const Profile = () => {
     );
 }
 
+//export { oldCommit }
 export default Profile
 
 
