@@ -339,7 +339,7 @@ function MyVerticallyCenteredModal(props) {
           <b>Priority of this story:</b> <font color={priorityColor}>{priorityComp}</font>
         </p>
         <p>
-          <b>Date Created:</b>
+          <b>Date Created:</b><br></br>
           {date}
         </p>
         <b>Brief Story Description:</b>
