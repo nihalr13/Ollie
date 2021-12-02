@@ -167,11 +167,11 @@ function Board() {
         </Link>
       </div>
 
-      <MyVerticallyCenteredModal
+      {modalState.show === true && <MyVerticallyCenteredModal
         show={modalState.show}
         onHide={() => setModalState({ show: false, story: modalState.story })}
         story={modalState.story}
-      />
+      />}
 
       {/* Used to view an alert to users whenever a change happens to the stories in the database */}
       <ToastContainer
@@ -189,31 +189,24 @@ function Board() {
   );
 }
 
-/* Work in progress email notifications, html below requires user to submit email so will brainstorm
-   effective methods.*/
 
-/*<form action="mailto:you@yourdomainhere.com" method="post"
-  enctype="text/plain" >
-    StoryName:title
-    StoryDescription:description
-    Category:category
-    Priority:priority
-    TimeEstimate:time
-  <input type="submit" name="submit" value="Submit"></input>
-</form>*/
-
-function MyVerticallyCenteredModal(props) { 
+function MyVerticallyCenteredModal(props) {
   var commentList = [];
-  const [newComment, setNewComment] = useState('');
 
-  if (props.story != null && props.story != undefined) {
+  // If the story doesn't have any comments, ignore. Else, add them to commentList
+  if (props.story.comments != null && props.story.comments != undefined) {
     commentList = props.story.comments;
     console.log(commentList);   
   }
-  const [comments, setComments] = useState(commentList);
-  console.log(comments);
-  console.log(props.story);
 
+  // state for new comment input box
+  const [newComment, setNewComment] = useState('');
+  // state for comments (helps in auto updating, handling change in input stuff, etc...)
+  const [comments, setComments] = useState(commentList);
+
+
+
+  //Below functions (Change, Submit) are for handling new comments by user
   const handleCommentChange = (event) => {
     setNewComment(event.target.value);
   }
@@ -229,6 +222,7 @@ function MyVerticallyCenteredModal(props) {
     });
   }
 
+  // to set up initial state of the story values and handling when they change (related to auto update and checking isEdit)
   var title;
   var description;
   var time;
@@ -244,17 +238,6 @@ function MyVerticallyCenteredModal(props) {
     date = props.story.date_created;
   }
 
-  var priorityColor = "";
-  if (priority == "high") {
-    priorityColor = "red";
-  }
-  if (priority == "medium") {
-    priorityColor = "orange";
-  }
-  if (priority == "low") {
-    priorityColor = "green";
-  }
-
   const initialState = {
     isEdit: false,
     title: title, 
@@ -264,9 +247,11 @@ function MyVerticallyCenteredModal(props) {
   }
   const[state, setState] = useState(initialState)
 
+  //#region 
   const handleEdit = () => {
       setState({
-        isEdit: true,
+        ...state,
+        isEdit: true
       })
   }
 
@@ -284,14 +269,15 @@ function MyVerticallyCenteredModal(props) {
       // updates['/stories/' + state.storyName] = story;
       // update(ref(db), updates);
       setState({
-        isEdit: false,
+        ...state,
+        isEdit: false
       })
   }
 
   const handleChange = e => {
     setState({
         ...state,
-        [e.target.name]: e.target.value,
+        [e.target.name]: e.target.value
     })
 }
 
@@ -302,18 +288,30 @@ function MyVerticallyCenteredModal(props) {
   var button;
 
   if (state.isEdit) {
-    titleComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChange} value={title}></input></Col>;
-    timeComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChange} value={time}></input></Col>;
-    priorityComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChange} value={priority}></input></Col>;
-    descriptionComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChange} value={description}></input></Col>;
+    titleComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChange} value={state.title} name="title"></input></Col>;
+    timeComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChange} value={state.time} name="time"></input></Col>;
+    priorityComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChange} value={state.priority} name="priority"></input></Col>;
+    descriptionComp = <Col md="auto" lg="auto"><input type="text" onChange={handleChange} value={state.description} name="description"></input></Col>;
     button = <button id="edit-btn" onClick={handleSave}>Save Changes</button>;
   }
   else {
-    titleComp = <Col md="auto" lg="auto">{title}</Col>;
-    timeComp = <Col md="auto" lg="auto">{time}</Col>;
-    priorityComp = <Col md="auto" lg="auto">{priority}</Col>;
-    descriptionComp = <Col md="auto" lg="auto">{description}</Col>;
+    titleComp = <Col md="auto" lg="auto">{state.title}</Col>;
+    timeComp = <Col md="auto" lg="auto">{state.time}</Col>;
+    priorityComp = <Col md="auto" lg="auto">{state.priority}</Col>;
+    descriptionComp = <Col md="auto" lg="auto">{state.description}</Col>;
     button = <button id="edit-btn" onClick={handleEdit}>Edit Story</button>;
+  }
+  
+
+  var priorityColor = "";
+  if (priority == "high") {
+    priorityColor = "red";
+  }
+  if (priority == "medium") {
+    priorityColor = "orange";
+  }
+  if (priority == "low") {
+    priorityColor = "green";
   }
 
   return (
@@ -375,6 +373,7 @@ function MyVerticallyCenteredModal(props) {
       </Modal.Footer>
     </Modal>
   );
+  //#endregion
 }
 
 export { created };

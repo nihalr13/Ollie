@@ -6,7 +6,7 @@ import './Comments.css'
 const Comment = (props) => {
     var comment = props.comment
     return <div className="Comment">
-      <p>{comment.text}</p>
+      <p>{comment}</p>
     </div>
 }
 
