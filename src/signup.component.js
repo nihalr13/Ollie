@@ -87,6 +87,10 @@ export default class Signup extends Component {
       <p className="forgot-password text-right">
         Forgot <a href="#">password?</a>
       </p>
+        <text style={{ marginTop: -50}}> Already have an account? </text>
+        <Link to="/login">
+        Log in
+      </Link>
     </form>
     <form onSubmit={this.github}>
       <h3 style={{ textAlign: 'center', marginBottom:20, marginTop: 30 }}>OR</h3>
