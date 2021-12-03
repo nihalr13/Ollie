@@ -92,11 +92,6 @@ export default class Signup extends Component {
         Log in
       </Link>
     </form>
-    <form onSubmit={this.github}>
-      <h3 style={{ textAlign: 'center', marginBottom:20, marginTop: 30 }}>OR</h3>
-      <button type="submit" className="btn btn-primary btn-block" >Sign-in with GitHub</button>
-    </form>
-    
     </div>
     </div>
     </div>
