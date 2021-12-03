@@ -18,7 +18,7 @@ export function CreateCodeReviewStory() {
         description:"Commit " + localStorage.oldCommit,
         estimated_time:3,
         category:"backlog",
-        priority:"Medium",
+        priority:"medium",
         date_created:dateVal,
         comments: ["First comment!"]
     }
