@@ -24,7 +24,7 @@ function StoryDetailsItem(props) {
             event.target.style.color = "white";
             console.log("remove: ", currentStory.watch_list);
             const updates = {};
-            updates['/stories/' + props.story.title] = currentStory;
+            updates['/stories/' + props.story.title + "/watch_list"] = null;
             update(ref(db), updates);
         }
         else {
@@ -32,7 +32,7 @@ function StoryDetailsItem(props) {
             event.target.style.color = "yellow";
             console.log("add: ", currentStory.watch_list)
             const updates = {};
-            updates['/stories/' + props.story.title] = currentStory;
+            updates['/stories/' + props.story.title + "/watch_list"] = currentStory.watch_list;
             update(ref(db), updates);
         }
     };

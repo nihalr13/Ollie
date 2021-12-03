@@ -53,7 +53,6 @@ function Board() {
         const childDate = childSnapshot.val().date_created;
         const childComments = childSnapshot.val().comments;
         let childWatchList = [];
-        console.log("Check", childSnapshot.val().watch_list)
         if (childSnapshot.val().watch_list !== undefined) {
           childWatchList = childSnapshot.val().watch_list;
         }
@@ -80,7 +79,7 @@ function Board() {
         {/* Used to view an alert to users whenever a change happens to the stories in the database */ }
         toast.info('Stories have been updated!', {
           position: "bottom-right",
-          autoClose: 5000,
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -220,7 +219,6 @@ function MyVerticallyCenteredModal(props) {
   const handleCommentSubmit = (event) => {
     setComments([...comments, {text: newComment}])
     commentList.push(newComment);
-    console.log(commentList);
     event.preventDefault();
     
     const updates = {};
