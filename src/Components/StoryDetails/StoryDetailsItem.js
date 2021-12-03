@@ -1,33 +1,39 @@
-import React from "react";
+import React, {useState} from "react";
 import { getAuth } from "firebase/auth";
 import { FaStar, FaRegEye } from "react-icons/fa";
+import { getDatabase, ref, onValue, update, push, set } from "firebase/database";
 
-const auth = getAuth();
-const user = auth.currentUser;
 
 
 var currUserObj = { favStories: [] }; //replace with actual currUserObj which include favStories attribute
 
+const db = getDatabase();
+const dbRef = ref(db, 'stories');
 
 export { currUserObj }; //for testing
 
 function StoryDetailsItem(props) {
     var currentStory = props.story;
-    currentStory.watch_list = ["test@test.com"];
 
 
     const handleWatchingStory = (event) => {
         event.preventDefault();
 
-        if (currentStory.watch_list.find(element => element === "test@test.com") !== undefined) {
-            currentStory.watch_list = currentStory.watch_list.filter(item => item !== "test@test.com"/*user.email*/);
+        if (currentStory.watch_list.find(element => element === "ollie.project.307@gmail.com") !== undefined) {
+            currentStory.watch_list = currentStory.watch_list.filter(item => item !== "ollie.project.307@gmail.com"/*user.email*/);
             event.target.style.color = "white";
             console.log("remove: ", currentStory.watch_list);
+            const updates = {};
+            updates['/stories/' + props.story.title] = currentStory;
+            update(ref(db), updates);
         }
         else {
-            currentStory.watch_list.push("test@test.com"/*user.email*/);
+            currentStory.watch_list.push("ollie.project.307@gmail.com"/*user.email*/);
             event.target.style.color = "yellow";
             console.log("add: ", currentStory.watch_list)
+            const updates = {};
+            updates['/stories/' + props.story.title] = currentStory;
+            update(ref(db), updates);
         }
     };
 
@@ -57,7 +63,7 @@ function StoryDetailsItem(props) {
     }
 
     //TODO: do the same as above for watch story
-    if (currentStory.watch_list.find(element => element === "test@test.com")) {
+    if (currentStory.watch_list.find(element => element === "ollie.project.307@gmail.com")) {
         watchbtn = <button className="wtch-btn-yellow" onClick={handleWatchingStory}><FaRegEye className="wtch-icon" /></button>;
     }
     else {

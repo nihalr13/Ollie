@@ -42,6 +42,7 @@ function Board() {
       var childPriorities = [];
       var childDates = [];
       var childCommentLists = [];
+      var childWatchLists = [];
 
       snapshot.forEach((childSnapshot) => {
         const childName = childSnapshot.val().name;
@@ -51,6 +52,11 @@ function Board() {
         const childPriority = childSnapshot.val().priority;
         const childDate = childSnapshot.val().date_created;
         const childComments = childSnapshot.val().comments;
+        let childWatchList = [];
+        console.log("Check", childSnapshot.val().watch_list)
+        if (childSnapshot.val().watch_list !== undefined) {
+          childWatchList = childSnapshot.val().watch_list;
+        }
         childNames.push(childName);
         childDescriptions.push(childDesc);
         childTimes.push(childTime);
@@ -58,6 +64,7 @@ function Board() {
         childPriorities.push(childPriority);
         childDates.push(childDate);
         childCommentLists.push(childComments);
+        childWatchLists.push(childWatchList);
       });
       const assigner_ = "Qusai";
       const assignee_ = "Bob";
@@ -65,7 +72,7 @@ function Board() {
 
       //Store stories as objects based on 
       for (var i = 0; i < childNames.length; i++) {
-        fetchedStories.push(new Story(childNames[i], childDescriptions[i], childTimes[i], assigner_, assignee_, childPriorities[i], childCategories[i], childDates[i], childCommentLists[i]));
+        fetchedStories.push(new Story(childNames[i], childDescriptions[i], childTimes[i], assigner_, assignee_, childPriorities[i], childCategories[i], childDates[i], childCommentLists[i], childWatchLists[i]));
       }
 
       setStories(fetchedStories);
