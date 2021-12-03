@@ -15,6 +15,7 @@ const poll = (owner, repo) => {
     } else {
       //Get new commit
       var newCommit = response.data[0].sha;
+      //Check if new commit equals old commit
       if (newCommit.localeCompare(localStorage.oldCommit) != 0) {
         //Set old commit to new commit
         localStorage.oldCommit = newCommit;
