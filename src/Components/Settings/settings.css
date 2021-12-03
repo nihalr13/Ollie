@@ -21,6 +21,10 @@ label {
     margin-left: 40%;
 }
 
+.form-label {
+  margin: 0%
+}
+
 
 .settings-header {
     background-color: lightblue;

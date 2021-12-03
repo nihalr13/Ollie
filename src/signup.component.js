@@ -59,38 +59,43 @@ export default class Signup extends Component {
 
   render() {
     return (
-      <div>
-      <form onSubmit={this.handleSubmit}>
-        <h3>Sign Up</h3>
+      <div className="container">
+      <div className="row">
+        <div className="col-12" >
+    <form onSubmit={this.handleSubmit}>
+      <h3>Sign Up</h3>
 
-        <div className="form-group">
-          <label>Email address</label>
-          <input type="email" value={this.state.email} className="form-control" onChange={this.handleChange} placeholder="Enter email" />
-        </div>
-
-        <div className="form-group">
-          <label>Password</label>
-          <input type="password" value={this.state.password} className="form-control" onChange={this.handleChange2} placeholder="Enter password" />
-        </div>
-
-        <div className="form-group">
-          <div className="custom-control custom-checkbox">
-            <input type="checkbox" className="custom-control-input" id="customCheck1" />
-            <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
-          </div>
-        </div>
-
-        <button type="submit" className="btn btn-primary btn-block">Submit</button>
-        <p className="forgot-password text-right">
-          Forgot <a href="#">password?</a>
-        </p>
-      </form>
-      <br></br>
-      <br></br>
-      <Link to="/login">
-      <button>Already have an account? Log in</button> 
-      </Link>
+      <div className="form-group">
+        <label className="form-label">Email address</label>
+        <input type="email" value={this.state.email} className="form-control" onChange={this.handleChange} placeholder="Enter email" />
       </div>
+
+      <div className="form-group">
+        <label className="form-label" for="password">Password</label>
+        <input id="password" type="password" value={this.state.password} className="form-control" onChange={this.handleChange2} placeholder="Enter password" />
+      </div>
+
+      <div className="form-group">
+        <div className="custom-control custom-checkbox">
+          <input type="checkbox" className="custom-control-input" id="customCheck1" />
+          <label className="form-label" htmlFor="customCheck1">Remember me</label>
+        </div>
+      </div>
+
+      <button type="submit" className="btn btn-primary btn-block">Submit</button>
+      
+      <p className="forgot-password text-right">
+        Forgot <a href="#">password?</a>
+      </p>
+    </form>
+    <form onSubmit={this.github}>
+      <h3 style={{ textAlign: 'center', marginBottom:20, marginTop: 30 }}>OR</h3>
+      <button type="submit" className="btn btn-primary btn-block" >Sign-in with GitHub</button>
+    </form>
+    
+    </div>
+    </div>
+    </div>
     );
   }
 }
