@@ -35,14 +35,6 @@ exports.watchStories = functions.database.ref("/stories/{story}")
            &emsp; <b>name after: </b> ${storyAfter.name} </p>
            <p> <b>priority before: </b> ${storyBefore.priority}
            &emsp; <b>priority after: </b> ${storyAfter.priority} </p>`;
-        
-        isWatchListB = storyBefore
-        isWatchListA = storyAfter
-        delete isWatchListB.watch_list
-        delete isWatchListA.watch_list
-        if (_.isEqual(isWatchListB, isWatchListA)) {
-          return;
-        }
       } else if (!change.before.exists()) { // create
         return;
       } else if (change.before.exists() && !change.after.exists()) { // deleted
