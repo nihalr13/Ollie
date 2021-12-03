@@ -18,6 +18,7 @@ export default class Login extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleChange2 = this.handleChange2.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.github = this.github.bind(this);
   }
 
   handleChange(event) {
@@ -34,7 +35,6 @@ export default class Login extends Component {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        alert("User successfully signed in");
         this.props.history.push("/Board");
         // ...
       })
@@ -54,12 +54,9 @@ export default class Login extends Component {
     signInWithPopup(auth, provider)
       .then((result) => {
         // This gives you a GitHub Access Token. You can use it to access the GitHub API.
-        const { Octokit } = require("@octokit/core");
         const credential = GithubAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
-        alert(token);
-        //console.log("yooo", user.repoOwner, user.repoName);
-
+        this.props.history.push("/Board");
         
         // ...
       }).catch((error) => {
@@ -77,38 +74,46 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
+        <div className="row">
+          <div className="col-12" >
       <form onSubmit={this.handleSubmit}>
         <h3>Sign In</h3>
 
         <div className="form-group">
-          <label>Email address</label>
+          <label className="form-label">Email address</label>
           <input type="email" value={this.state.email} className="form-control" onChange={this.handleChange} placeholder="Enter email" />
         </div>
 
         <div className="form-group">
-          <label>Password</label>
-          <input type="password" value={this.state.password} className="form-control" onChange={this.handleChange2} placeholder="Enter password" />
+          <label className="form-label" for="password">Password</label>
+          <input id="password" type="password" value={this.state.password} className="form-control" onChange={this.handleChange2} placeholder="Enter password" />
         </div>
 
         <div className="form-group">
           <div className="custom-control custom-checkbox">
             <input type="checkbox" className="custom-control-input" id="customCheck1" />
-            <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+            <label className="form-label" htmlFor="customCheck1">Remember me</label>
           </div>
         </div>
 
         <button type="submit" className="btn btn-primary btn-block">Submit</button>
+        
         <p className="forgot-password text-right">
           Forgot <a href="#">password?</a>
         </p>
+        <text style={{ marginTop: -50}}> Don't have an account? </text>
+        <Link to="/signup">
+        Sign up
+      </Link>
       </form>
       <form onSubmit={this.github}>
-        <button type="submit" className="btn btn-primary btn-block">Sign-in with GitHub</button>
+        <h3 style={{ textAlign: 'center', marginBottom:20, marginTop: 30 }}>OR</h3>
+        <button type="submit" className="btn btn-primary btn-block" >Sign-in with GitHub</button>
       </form>
-      <Link to="/signup">
-      <button>Don't have an account? Sign up</button> 
-      </Link>
+      
+      </div>
+      </div>
       </div>
     );
   }

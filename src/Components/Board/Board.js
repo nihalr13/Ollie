@@ -203,7 +203,6 @@ function MyVerticallyCenteredModal(props) {
   // If the story doesn't have any comments, ignore. Else, add them to commentList
   if (props.story.comments != null && props.story.comments != undefined) {
     commentList = props.story.comments;
-    console.log(commentList);   
   }
 
   // state for new comment input box
@@ -220,13 +219,14 @@ function MyVerticallyCenteredModal(props) {
 
   const handleCommentSubmit = (event) => {
     setComments([...comments, {text: newComment}])
+    commentList.push(newComment);
+    console.log(commentList);
     event.preventDefault();
-
-    const commentListRef = ref(db, '/stories/' + props.story.title + '/comments');
-    const newCommentRef = push(commentListRef);
-    set(newCommentRef, {
-      newComment
-    });
+    
+    const updates = {};
+    updates['/stories/' + props.story.title + '/comments'] = commentList;
+    update(ref(db), updates);
+    window.location.reload();
   }
 
   // to set up initial state of the story values and handling when they change (related to auto update and checking isEdit)
@@ -236,6 +236,7 @@ function MyVerticallyCenteredModal(props) {
   var priority;
   var category;
   var date;
+  var dbcomments;
   if (props.story != null) {
     title = props.story.title
     description = props.story.description;
@@ -243,6 +244,7 @@ function MyVerticallyCenteredModal(props) {
     priority = props.story.priority;
     category = props.story.category;
     date = props.story.date_created;
+    dbcomments = props.story.comments;
   }
 
   const initialState = {
@@ -263,18 +265,19 @@ function MyVerticallyCenteredModal(props) {
   }
 
   const handleSave = (event) => {
-      // const story = {
-      //   name:props.title,
-      //   description:state.storyDesc,
-      //   estimated_time:state.timeEstimate,
-      //   category:state.category,
-      //   priority:state.priority,
-      //   date_created:dateVal,
-      //   comments:state.comments
-      // }
-      // const updates = {};
-      // updates['/stories/' + state.storyName] = story;
-      // update(ref(db), updates);
+      const story = {
+        name:state.title,
+        description:state.description,
+        estimated_time:state.time,
+        category: category,
+        priority:state.priority,
+        date_created:date,
+        comments:dbcomments
+      }
+
+      const updates = {};
+      updates['/stories/' + props.story.title] = story;
+      update(ref(db), updates);
       setState({
         ...state,
         isEdit: false
