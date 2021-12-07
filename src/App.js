@@ -24,7 +24,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          <h1> Ollie </h1>
+          <h1> Bob </h1>
         </p>
         <Link to="/login"><button>
           Login
