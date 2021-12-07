@@ -13,6 +13,7 @@ const poll = (owner, repo) => {
     if ((localStorage.oldCommit).localeCompare("0") == 0) {
       localStorage.oldCommit = response.data[0].sha;
       //Scripting commit
+      //New commit
     } else {
       //Get new commit
       var newCommit = response.data[0].sha;
