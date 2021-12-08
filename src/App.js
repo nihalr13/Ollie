@@ -18,7 +18,7 @@ function signout() {
     alert("No account is currently signed in.");
   }
 }
-// demo
+
 function App() {
   return (
     <div className="App">
