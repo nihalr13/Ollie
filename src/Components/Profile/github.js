@@ -10,6 +10,7 @@ const poll = (owner, repo) => {
     repo: repo
   }).then(response => {
     console.log(localStorage.oldCommit);
+    //Testing scripting
     if ((localStorage.oldCommit).localeCompare("0") == 0) {
       localStorage.oldCommit = response.data[0].sha;
       //Scripting commit
