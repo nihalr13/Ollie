@@ -1,2 +1,2 @@
-# Ollie
-Team 6 307 Project: Similar to management system JIRA, but also includes scripting.
+# Description
+Ollie is a project management tool built using React, Firebase, and Google Cloud Functions. This web app service implemented features such as basic CRUD operations, automatic email notifications, and story creation. It also includes scripting which means that when code is pushed to GitHub, a story is automatically created for the code reviewer. Additionally, the project utilizes Continous Delivery and Continous Integration.
